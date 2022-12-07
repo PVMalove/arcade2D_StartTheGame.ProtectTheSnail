@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1675ca1885e647e88c4e999d1164b08c, type: 3}
+  m_Name: Arrows
+  m_EditorClassIdentifier: 
+  poolName: Arrows
+  poolItems:
+  - prefab: {fileID: 5021314007947345262, guid: c062260e0dd547049a96d1de35d7fdce, type: 3}
+    size: 5
+  - prefab: {fileID: 2983086918648963800, guid: c7b3265efc4959e4790251631ec8c4c2, type: 3}
+    size: 5
+  - prefab: {fileID: 2766273197065095730, guid: 956d4d2afa9f0e3489d3a698601bfd01, type: 3}
+    size: 5
+  - prefab: {fileID: 3965903662793778566, guid: a6c4d69fd73c0ac43a55797e2ebcf44e, type: 3}
+    size: 5
