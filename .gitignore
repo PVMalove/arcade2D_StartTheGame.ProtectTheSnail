@@ -70,8 +70,5 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-.idea/.idea.collectibleCard2D_StartTheGame.KKI/.idea/indexLayout.xml
-.idea/.idea.collectibleCard2D_StartTheGame.KKI/.idea/projectSettingsUpdater.xml
-.idea/.idea.collectibleCard2D_StartTheGame.KKI/.idea/vcs.xml
-.idea/.idea.collectibleCard2D_StartTheGame.KKI/.idea/workspace.xml
-.idea/.idea.collectibleCard2D_StartTheGame.KKI/.idea/encodings.xml
+.idea/.idea.arcade2D_StartTheGame.WolfCatchesTheEgg/.idea/encodings.xml
+.idea/.idea.arcade2D_StartTheGame.WolfCatchesTheEgg/.idea/indexLayout.xml
