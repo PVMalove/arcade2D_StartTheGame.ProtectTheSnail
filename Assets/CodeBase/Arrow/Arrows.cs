@@ -10,7 +10,7 @@ namespace CodeBase.Arrow
         private readonly CompositeDisposable _disposable = new();
 
         [SerializeField] private GameObject[] _arrowSprite;
-        [SerializeField] private Position Position;
+        [SerializeField] private Position _position;
         [SerializeField] private int _displayPeriod = 500;
         [SerializeField] private Spawner _mediator;
 
@@ -29,9 +29,7 @@ namespace CodeBase.Arrow
 
             Observable.Interval(period: TimeSpan.FromMilliseconds(value: _displayPeriod)).Subscribe(onNext: _ =>
             {
-                if (IsLastArrow(arrow))
-                    _mediator.NotifyArrowCollision(arrow: Position);
-
+                CheckCollision(arrow);
                 ShowArrow(index: arrow);
                 HideArrow(index: arrow);
                 DespawnArrows(index: arrow);
@@ -39,8 +37,14 @@ namespace CodeBase.Arrow
             }).AddTo(container: _disposable);
         }
 
-        private bool IsLastArrow(int arrow) => 
-            arrow == _arrowSprite.Length - 1;
+        private void CheckCollision(int arrow)
+        {
+            if (IsLastArrow(index: arrow))
+                _mediator.NotifyArrowCollision(arrow: _position);
+        }
+
+        private bool IsLastArrow(int index) => 
+            index == _arrowSprite.Length - 1;
 
         private void ShowArrow(int index)
         {

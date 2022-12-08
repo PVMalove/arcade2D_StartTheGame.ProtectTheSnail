@@ -469,12 +469,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d4d37ea166149a5b3e38da4c9ff3a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Position: 1
   _arrowSprite:
   - {fileID: 5021314006452943063}
   - {fileID: 5021314007603368779}
   - {fileID: 5021314007093788495}
   - {fileID: 5021314007058184078}
   - {fileID: 5021314006396346017}
+  _position: 1
   _displayPeriod: 500
   _mediator: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
