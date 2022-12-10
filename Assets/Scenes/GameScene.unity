@@ -6593,7 +6593,7 @@ MonoBehaviour:
   _moveRightDown: {fileID: 1717576917}
   _moveLeftTop: {fileID: 727830006}
   _moveLeftDown: {fileID: 526738359}
-  Position: 0
+  _position: 0
 --- !u!114 &6285632174260348601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6607,6 +6607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawner: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
+  _player: {fileID: 6285632174260348600}
 --- !u!1 &6285632174619362896
 GameObject:
   m_ObjectHideFlags: 0

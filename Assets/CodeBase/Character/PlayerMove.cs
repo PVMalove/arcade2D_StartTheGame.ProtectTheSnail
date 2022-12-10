@@ -11,37 +11,26 @@ namespace CodeBase.Character
 
         public Position Position;
 
-
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Position = Position.RightTop;
+            if (Input.GetKeyDown(KeyCode.E)) 
                 MoveRightTop();
-            }
 
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                Position = Position.RightDown;
+            if (Input.GetKeyDown(KeyCode.D)) 
                 MoveRightDown();
-            }
 
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                Position = Position.LeftTop;
+            if (Input.GetKeyDown(KeyCode.Q)) 
                 MoveLeftTop();
-            }
 
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                Position = Position.LeftDown;
+            if (Input.GetKeyDown(KeyCode.A)) 
                 MoveLeftDown();
-            }
         }
 
         private void MoveRightTop()
         {
+            Position = Position.RightTop;
             _moveRightTop.SetActive(true);
+            
             _moveRightDown.SetActive(false);
             _moveLeftTop.SetActive(false);
             _moveLeftDown.SetActive(false);
@@ -50,7 +39,10 @@ namespace CodeBase.Character
         private void MoveRightDown()
         {
             _moveRightTop.SetActive(false);
+
+            Position = Position.RightDown;
             _moveRightDown.SetActive(true);
+            
             _moveLeftTop.SetActive(false);
             _moveLeftDown.SetActive(false);
         }
@@ -59,6 +51,9 @@ namespace CodeBase.Character
         {
             _moveRightTop.SetActive(false);
             _moveRightDown.SetActive(false);
+
+            Position = Position.LeftTop;
+            
             _moveLeftTop.SetActive(true);
             _moveLeftDown.SetActive(false);
         }
@@ -68,6 +63,8 @@ namespace CodeBase.Character
             _moveRightTop.SetActive(false);
             _moveRightDown.SetActive(false);
             _moveLeftTop.SetActive(false);
+
+            Position = Position.LeftDown;
             _moveLeftDown.SetActive(true);
         }
     }

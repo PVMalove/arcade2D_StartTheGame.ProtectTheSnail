@@ -43,9 +43,6 @@ namespace CodeBase.Arrow
                 _mediator.NotifyArrowCollision(arrow: _position);
         }
 
-        private bool IsLastArrow(int index) => 
-            index == _arrowSprite.Length - 1;
-
         private void ShowArrow(int index)
         {
             if (index >= _arrowSprite.Length)
@@ -66,5 +63,8 @@ namespace CodeBase.Arrow
             if (index == _arrowSprite.Length) 
                 ObjectPool.Despawn(toDespawn: gameObject);
         }
+
+        private bool IsLastArrow(int index) => 
+            index == _arrowSprite.Length - 1;
     }
 }

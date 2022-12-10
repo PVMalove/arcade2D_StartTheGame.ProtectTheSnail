@@ -12,6 +12,7 @@ namespace CodeBase.Arrow
 
         [SerializeField] private GameObject[] _arrows;
         [SerializeField] private Transform[] _spawnPoint;
+        [SerializeField] private int _spawnInterval = 1200;
 
         public event Action<Position> OnArrowCollision;
 
@@ -26,7 +27,7 @@ namespace CodeBase.Arrow
 
         private void Spawn()
         {
-            Observable.Interval(TimeSpan.FromMilliseconds(600)).Subscribe(_ =>
+            Observable.Interval(TimeSpan.FromMilliseconds(_spawnInterval)).Subscribe(_ =>
             {
                 int index = Random.Range(0, _arrows.Length);
                 ObjectPool.Spawn(_arrows[index], _spawnPoint[index].position, _arrows[index].transform.rotation);

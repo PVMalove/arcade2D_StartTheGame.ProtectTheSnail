@@ -35,6 +35,10 @@ PrefabInstance:
       propertyPath: _position
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5021314007947345260, guid: c062260e0dd547049a96d1de35d7fdce, type: 3}
+      propertyPath: _displayPeriod
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 5021314007947345262, guid: c062260e0dd547049a96d1de35d7fdce, type: 3}
       propertyPath: m_Name
       value: Arrows_down_left
