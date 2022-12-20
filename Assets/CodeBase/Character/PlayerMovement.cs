@@ -2,7 +2,7 @@
 
 namespace CodeBase.Character
 {
-    public class PlayerMove : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private GameObject _moveRightTop;
         [SerializeField] private GameObject _moveRightDown;
@@ -13,7 +13,7 @@ namespace CodeBase.Character
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.E)) 
+            if (Input.GetKeyDown(KeyCode.E))
                 MoveRightTop();
 
             if (Input.GetKeyDown(KeyCode.D)) 

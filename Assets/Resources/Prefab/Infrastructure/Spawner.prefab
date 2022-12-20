@@ -182,3 +182,9 @@ MonoBehaviour:
   - {fileID: 558750124681750620}
   - {fileID: 558750124277948420}
   - {fileID: 558750125150288979}
+  _presenter: {fileID: 7294814471544779920, guid: b0d644399c67a7344b8e18d7374e7068, type: 3}
+  _minSpawnInterval: 500
+  _maxSpawnInterval: 2000
+  _spawnInterval: 2000
+  _boostSpawnInterval: 1
+  _nonBoostSpawnIntervalTime: 1
