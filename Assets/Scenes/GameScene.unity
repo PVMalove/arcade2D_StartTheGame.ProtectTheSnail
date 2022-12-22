@@ -6235,20 +6235,56 @@ PrefabInstance:
       value: Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
+      propertyPath: _second
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
+      propertyPath: _interval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
       propertyPath: _presenter
       value: 
       objectReference: {fileID: 268253523}
     - target: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
+      propertyPath: _maxInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
+      propertyPath: _minInterval
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
+      propertyPath: _lowerInterval
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
       propertyPath: _spawnInterval
-      value: 2000
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
+      propertyPath: _maxSpawnInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
+      propertyPath: _minSpawnInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
+      propertyPath: _nonLowerInterval
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
       propertyPath: _boostSpawnInterval
-      value: 50
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
+      propertyPath: _timeBetweenIntervals
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
       propertyPath: _nonBoostSpawnIntervalTime
-      value: 60
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
