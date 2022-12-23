@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
-using CodeBase.Infrastructure.Pool;
 using CodeBase.Infrastructure.Presenter;
+using CodeBase.Infrastructure.Services.Pool;
 using UniRx;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -14,8 +14,6 @@ namespace CodeBase.Arrow
         
         private bool _isPlay;
         private DateTimeOffset _timeOffset;
-        
-        public event Action<Position> OnArrowCollision;
 
         [SerializeField] private GameObject[] _arrows;
         [SerializeField] private Transform[] _spawnPoint;
@@ -28,7 +26,9 @@ namespace CodeBase.Arrow
         [SerializeField] private float _nonLowerInterval;
         [SerializeField] private float _lowerInterval;
 
-        [SerializeField] private DesktopPresenter _presenter;
+        [SerializeField] private Presenter _presenter;
+
+        public event Action<Position> OnArrowCollision;
 
         private void OnEnable() => 
             _presenter.GameStart += OnGameStart;
@@ -63,6 +63,7 @@ namespace CodeBase.Arrow
 
         private void OnGameStart()
         {
+            Debug.Log("OnGameStart is play - " + _isPlay);
             _isPlay = true;
             StartCoroutine(IntervalCounter());
         }
@@ -73,7 +74,7 @@ namespace CodeBase.Arrow
             ObjectPool.Spawn(_arrows[index], _spawnPoint[index].position, _arrows[index].transform.rotation);
         }
 
-        private bool CheckTimer(Timestamped<long> x) => 
+        private bool CheckTimer(Timestamped<long> x) =>
             x.Timestamp >= _timeOffset.AddSeconds(_interval) && _isPlay;
 
         private IEnumerator IntervalCounter()
