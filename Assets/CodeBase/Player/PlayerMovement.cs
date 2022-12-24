@@ -1,4 +1,5 @@
 ﻿using CodeBase.Infrastructure;
+using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Input;
 using UnityEngine;
 
@@ -15,8 +16,8 @@ namespace CodeBase.Player
 
         private IInputService _input;
 
-        private void Awake() => 
-            _input = Game.InputService;
+        private void Awake() =>
+            _input = AllServices.Container.Single<IInputService>();
 
         private void Update()
         {

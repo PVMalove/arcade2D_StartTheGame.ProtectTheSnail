@@ -8,6 +8,7 @@ namespace CodeBase.Infrastructure
     public class SceneLoader
     {
         private readonly ICoroutineRunner _coroutineRunner;
+        private readonly float _curtainDelay = 2f;
 
         public SceneLoader(ICoroutineRunner coroutineRunner) => 
             _coroutineRunner = coroutineRunner;
@@ -27,7 +28,8 @@ namespace CodeBase.Infrastructure
 
             while (!waitNextScene.isDone)
                 yield return null;
-                
+
+            yield return new WaitForSeconds(_curtainDelay);
             onLoaded?.Invoke();
         }
     }

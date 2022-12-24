@@ -1,21 +1,22 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CodeBase.Infrastructure.Component
 {
-    [RequireComponent(typeof(SpriteRenderer))]
-    public class SpriteAnimation : MonoBehaviour
+    [RequireComponent(typeof(Image))]
+    public class UIImageAnimation : MonoBehaviour
     {
         [SerializeField] private int _frameRare;
         [SerializeField] private bool _loop;
         [SerializeField] private Sprite[] _sprites;
 
-        private SpriteRenderer _renderer;
+        private Image _renderer;
         private float _secondPerFrame;
         private int _currentSpriteIndex;
         private float _nextFrameTime;
-
+        
         private void Start() => 
-            _renderer = GetComponent<SpriteRenderer>();
+            _renderer = GetComponent<Image>();
 
         private void OnEnable()
         {

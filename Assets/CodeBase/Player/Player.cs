@@ -1,5 +1,4 @@
 ﻿using CodeBase.Arrow;
-using CodeBase.Infrastructure.Presenter;
 using UnityEngine;
 
 namespace CodeBase.Player

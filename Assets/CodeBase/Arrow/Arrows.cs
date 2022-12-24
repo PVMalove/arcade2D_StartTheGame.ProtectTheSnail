@@ -60,8 +60,12 @@ namespace CodeBase.Arrow
 
         private void DespawnArrows(int index)
         {
-            if (index == _arrowSprite.Length) 
+            if (index == _arrowSprite.Length)
+            {
                 ObjectPool.Despawn(toDespawn: gameObject);
+                _disposable.Clear();
+            } 
+                
         }
 
         private bool IsLastArrow(int index) => 

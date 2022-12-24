@@ -6,6 +6,5 @@ namespace CodeBase.Infrastructure.Services.Input
         public abstract bool RightDown { get; }
         public abstract bool LeftTop { get; }
         public abstract bool LeftDown { get; }
-        public abstract bool GameStart { get; }
     }
 }
