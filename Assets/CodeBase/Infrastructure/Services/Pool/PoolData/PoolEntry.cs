@@ -4,9 +4,13 @@ namespace CodeBase.Infrastructure.Services.Pool.PoolData
 {
     public class PoolEntry : MonoBehaviour
     {
-        [SerializeField] private PoolPreset poolPreset;
+        [SerializeField] private PoolPreset poolArrowPreset;
+        [SerializeField] private PoolPreset poolFXPreset;
 
-        private void Awake() => 
-            ObjectPool.InstallPoolItems(poolPreset);
+        private void Awake()
+        {
+            ObjectPool.InstallPoolItems(poolArrowPreset);
+            ObjectPool.InstallPoolItems(poolFXPreset);
+        }
     }
 }

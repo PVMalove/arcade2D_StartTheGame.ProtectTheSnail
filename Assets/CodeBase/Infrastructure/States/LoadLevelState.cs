@@ -1,5 +1,7 @@
 using CodeBase.Infrastructure.Services.Factory;
 using CodeBase.Logic;
+using CodeBase.UI.Elements;
+using UnityEngine;
 
 namespace CodeBase.Infrastructure.States
 {
@@ -35,8 +37,17 @@ namespace CodeBase.Infrastructure.States
 
         private void InitGameWorld()
         {
-            _gameFactory.CreatePlayer();
+            GameObject player = _gameFactory.CreatePlayer();
             _gameFactory.CreateSpawner();
+            _gameFactory.CreateSnail();
+            InitHUD(player);
+        }
+
+        private void InitHUD(GameObject snail)
+        {
+            GameObject hud = _gameFactory.CreateHUD();
+            hud.GetComponentInChildren<ActorUI>()
+                .Construct(snail.GetComponent<IHealth>());
         }
     }
 }

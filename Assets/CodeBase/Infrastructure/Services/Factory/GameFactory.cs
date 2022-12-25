@@ -16,7 +16,7 @@ namespace CodeBase.Infrastructure.Services.Factory
             _randomService = randomService;
         }
         
-        public void CreatePlayer() => 
+        public GameObject CreatePlayer() => 
             _assets.Instantiate(AssetAddress.PlayerPath);
 
         public void CreateSpawner()
@@ -24,5 +24,11 @@ namespace CodeBase.Infrastructure.Services.Factory
           GameObject spawner = _assets.Instantiate(AssetAddress.SpawnerPath);
           spawner.GetComponent<Spawner>().Construct(_randomService);
         }
+
+        public void CreateSnail() => 
+            _assets.Instantiate(AssetAddress.SnailPath);
+
+        public GameObject CreateHUD() =>
+            _assets.Instantiate(AssetAddress.HUDPath);
     }
 }
