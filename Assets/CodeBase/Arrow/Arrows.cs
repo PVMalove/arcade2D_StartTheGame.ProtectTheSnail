@@ -11,7 +11,7 @@ namespace CodeBase.Arrow
 
         [SerializeField] private GameObject[] _arrowSprite;
         [SerializeField] private Position _position;
-        [SerializeField] private int _displayPeriod = 500;
+        [SerializeField] private float _displayPeriod = 500;
         [SerializeField] private Spawner _mediator;
 
         private void OnEnable() =>
@@ -64,8 +64,7 @@ namespace CodeBase.Arrow
             {
                 ObjectPool.Despawn(toDespawn: gameObject);
                 _disposable.Clear();
-            } 
-                
+            }
         }
 
         private bool IsLastArrow(int index) => 

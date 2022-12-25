@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections;
-using CodeBase.Infrastructure.Services;
-using CodeBase.Infrastructure.Services.Factory;
 using CodeBase.Infrastructure.Services.Pool;
 using CodeBase.Infrastructure.Services.Randomizer;
 using UniRx;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace CodeBase.Arrow
 {
@@ -15,18 +12,15 @@ namespace CodeBase.Arrow
         private readonly CompositeDisposable _disposable = new();
 
         private IRandomService _randomService;
-        private ITimerService _timerService;
         private DateTimeOffset _timeOffset;
 
         private bool _isPlay;
-
+        
         [SerializeField] private GameObject[] _arrows;
         [SerializeField] private Transform[] _spawnPoint;
 
-
         [Header("Interval spawn settings:")] 
         [SerializeField] private float _minInterval;
-
         [SerializeField] private float _maxInterval;
         [SerializeField] private float _interval;
         [SerializeField] private float _timeBetweenIntervals;
@@ -35,10 +29,9 @@ namespace CodeBase.Arrow
 
         public event Action<Position> OnArrowCollision;
 
-        public void Construct(IRandomService randomService, ITimerService timerService)
+        public void Construct(IRandomService randomService)
         {
             _randomService = randomService;
-            _timerService = timerService;
         }
 
 
@@ -65,6 +58,7 @@ namespace CodeBase.Arrow
                 {
                     SpawnArrow();
                     _timeOffset = x.Timestamp;
+                    Debug.Log("Interval - " + _interval);
                 }).AddTo(_disposable);
         }
 
@@ -83,7 +77,6 @@ namespace CodeBase.Arrow
         private void OnGameStart()
         {
             _isPlay = true;
-            //StartCoroutine(_timerService.IntervalCounter());
             StartCoroutine(IntervalCounter());
         }
 

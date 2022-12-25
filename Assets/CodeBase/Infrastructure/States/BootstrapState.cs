@@ -36,15 +36,12 @@ namespace CodeBase.Infrastructure.States
 
         private void RegisterServices()
         {
-            _services.RegisterSingle(implementation: InputService());
+            _services.RegisterSingle(InputService());
             _services.RegisterSingle<IRandomService>(new RandomService());
-            _services.RegisterSingle<ITimerService>(new TimerService());
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
             _services.RegisterSingle<IGameFactory>(new GameFactory(
                 _services.Single<IAssetProvider>(),
-                _services.Single<IRandomService>(),
-                _services.Single<ITimerService>()));
-            
+                _services.Single<IRandomService>()));
         }
 
         private static IInputService InputService() => 

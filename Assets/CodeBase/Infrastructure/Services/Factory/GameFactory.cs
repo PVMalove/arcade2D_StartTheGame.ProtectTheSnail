@@ -9,13 +9,11 @@ namespace CodeBase.Infrastructure.Services.Factory
     {
         private readonly IAssetProvider _assets;
         private readonly IRandomService _randomService;
-        private readonly ITimerService _timerService;
 
-        public GameFactory(IAssetProvider assets, IRandomService randomService, ITimerService timerService)
+        public GameFactory(IAssetProvider assets, IRandomService randomService)
         {
             _assets = assets;
             _randomService = randomService;
-            _timerService = timerService;
         }
         
         public void CreatePlayer() => 
@@ -24,7 +22,7 @@ namespace CodeBase.Infrastructure.Services.Factory
         public void CreateSpawner()
         {
           GameObject spawner = _assets.Instantiate(AssetAddress.SpawnerPath);
-          spawner.GetComponent<Spawner>().Construct(_randomService, _timerService);
+          spawner.GetComponent<Spawner>().Construct(_randomService);
         }
     }
 }
