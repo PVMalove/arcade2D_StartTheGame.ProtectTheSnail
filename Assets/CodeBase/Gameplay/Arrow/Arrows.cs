@@ -3,15 +3,17 @@ using CodeBase.Infrastructure.Services.Pool;
 using UniRx;
 using UnityEngine;
 
-namespace CodeBase.Arrow
+namespace CodeBase.Gameplay.Arrow
 {
     public class Arrows : MonoBehaviour
     {
+        private const float StartDisplayPeriod = 500f;
+        private const float LastArrowDisplay = 120f;
         private readonly CompositeDisposable _disposable = new();
 
         [SerializeField] private GameObject[] _arrowSprite;
         [SerializeField] private Position _position;
-        [SerializeField] private float _displayPeriod = 500;
+        [SerializeField] private float _displayPeriod;
         [SerializeField] private Spawner _mediator;
 
         private void OnEnable() =>
@@ -26,8 +28,10 @@ namespace CodeBase.Arrow
         private void ArrowShot()
         {
             int arrow = 0;
-
-            Observable.Interval(period: TimeSpan.FromMilliseconds(value: _displayPeriod)).Subscribe(onNext: _ =>
+            
+            ResetDisplayPeriod(arrow);
+            Observable.Interval(period: TimeSpan.FromMilliseconds(value: _displayPeriod))
+                .Subscribe(onNext: _ =>
             {
                 CheckCollision(arrow);
                 ShowArrow(index: arrow);
@@ -40,7 +44,10 @@ namespace CodeBase.Arrow
         private void CheckCollision(int arrow)
         {
             if (IsLastArrow(index: arrow))
+            {
                 _mediator.NotifyArrowCollision(arrow: _position);
+                _displayPeriod = LastArrowDisplay;
+            }
         }
 
         private void ShowArrow(int index)
@@ -69,5 +76,11 @@ namespace CodeBase.Arrow
 
         private bool IsLastArrow(int index) => 
             index == _arrowSprite.Length - 1;
+
+        private void ResetDisplayPeriod(int arrow)
+        {
+            if (arrow == 0)
+                _displayPeriod = StartDisplayPeriod;
+        }
     }
 }

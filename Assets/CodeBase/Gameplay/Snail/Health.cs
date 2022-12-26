@@ -2,22 +2,20 @@ using System;
 using CodeBase.Logic;
 using UnityEngine;
 
-namespace CodeBase.Snail
+namespace CodeBase.Gameplay.Snail
 {
-    public class SnailHealth : MonoBehaviour, IHealth
+    public class Health : MonoBehaviour, IHealth
     {
-        [SerializeField] private int _currentHealth;
-        [SerializeField, Range(0, 5)] private int _maxHealth;
+        private const int MaxHealth = 5;
+        
+        [SerializeField, Range(0, MaxHealth)] private int _currentHealth;
+
         public int Current
         {
             get => _currentHealth;
-            set => _currentHealth = value;
+            private set => _currentHealth = value;
         }
-        public int Max
-        {
-            get => _maxHealth;
-            set => _maxHealth = value;
-        }
+        public int Max => MaxHealth;
 
         public event Action HealthChanged;
 

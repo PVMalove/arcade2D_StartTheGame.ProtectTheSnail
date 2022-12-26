@@ -1,3 +1,4 @@
+using CodeBase.Gameplay.Player;
 using CodeBase.Infrastructure.Services.Factory;
 using CodeBase.Logic;
 using CodeBase.UI.Elements;
@@ -43,11 +44,11 @@ namespace CodeBase.Infrastructure.States
             InitHUD(player);
         }
 
-        private void InitHUD(GameObject snail)
+        private void InitHUD(GameObject player)
         {
             GameObject hud = _gameFactory.CreateHUD();
             hud.GetComponentInChildren<ActorUI>()
-                .Construct(snail.GetComponent<IHealth>());
+                .Construct(player.GetComponent<IHealth>(), player.GetComponent<IDiamond>());
         }
     }
 }

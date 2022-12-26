@@ -1,21 +1,15 @@
-﻿using CodeBase.Arrow;
 using CodeBase.Infrastructure.Services.Pool;
-using CodeBase.Snail;
 using UnityEngine;
 
-namespace CodeBase.Player
+namespace CodeBase.Gameplay.Player
 {
-    public class Player : MonoBehaviour
+    public class FX : MonoBehaviour
     {
-        private const int Damage = 1;
+        [SerializeField] private Player _player;
         
-        [SerializeField] private Spawner _spawner;
-        [SerializeField] private PlayerMovement _player;
-        [SerializeField] private SnailHealth _snailHealth;
-
         [Header("Effects settings:")] 
         [SerializeField] private GameObject _diamondFX;
-        [SerializeField] private GameObject _deathFX;
+        [SerializeField] private GameObject _HitFX;
 
         [Space]
         [SerializeField] private Transform _fxPointRightTop;
@@ -23,29 +17,21 @@ namespace CodeBase.Player
         [SerializeField] private Transform _fxPointLeftTop;
         [SerializeField] private Transform _fxPointLeftDown;
 
-
-        private void OnEnable() =>
-            _spawner.OnArrowCollision += ArrowCollision;
-
-        private void OnDisable() =>
-            _spawner.OnArrowCollision -= ArrowCollision;
-
-        private void ArrowCollision(Position arrowPosition)
+        private void OnEnable()
         {
-            if (_player.Position == arrowPosition)
-            {
-                PlayFXReward();
-            }
-            else
-            {
-                _snailHealth.TakeDamage(Damage);
-                PlayFXDead(arrowPosition);
-            }
+            _player.DefenseFX += PlayFXDefense;
+            _player.HitFX += PlayFXHit;
         }
 
-        private void PlayFXReward()
+        private void OnDisable()
         {
-            switch (_player.Position)
+            _player.DefenseFX -= PlayFXDefense;
+            _player.HitFX -= PlayFXHit;
+        }
+
+        private void PlayFXDefense(Position playerPosition)
+        {
+            switch (playerPosition)
             {
                 case Position.RightTop:
                     SpawnFX(_diamondFX, _fxPointRightTop);
@@ -61,27 +47,27 @@ namespace CodeBase.Player
                     break;
             }
         }
-
-        private void PlayFXDead(Position arrowPosition)
+        
+        private void PlayFXHit(Position arrowPosition)
         {
             switch (arrowPosition)
             {
                 case Position.RightTop:
-                    SpawnFX(_deathFX, _fxPointRightTop);
+                    SpawnFX(_HitFX, _fxPointRightTop);
                     break;
                 case Position.RightDown:
-                    SpawnFX(_deathFX, _fxPointRightDown);
+                    SpawnFX(_HitFX, _fxPointRightDown);
                     break;
                 case Position.LeftTop:
-                    SpawnFX(_deathFX, _fxPointLeftTop);
+                    SpawnFX(_HitFX, _fxPointLeftTop);
                     break;
                 case Position.LeftDown:
-                    SpawnFX(_deathFX, _fxPointLeftDown);
+                    SpawnFX(_HitFX, _fxPointLeftDown);
                     break;
             }
         }
 
-        private void SpawnFX(GameObject fx, Transform point) => 
+        private void SpawnFX(GameObject fx, Transform point) =>
             ObjectPool.Spawn(fx, point.position);
     }
 }

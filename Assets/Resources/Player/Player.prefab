@@ -409,37 +409,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2037421568800771243
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3803557637662145906}
-  m_Layer: 0
-  m_Name: FXPoint_Coin
-  m_TagString: Untagged
-  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3803557637662145906
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037421568800771243}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.75, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7046136125111966183}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2134672894729168333
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +441,6 @@ Transform:
   - {fileID: 2088026534}
   - {fileID: 1650018582}
   - {fileID: 476242635}
-  - {fileID: 3803557637662145906}
   m_Father: {fileID: 4388412306629780531}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -861,6 +829,8 @@ GameObject:
   - component: {fileID: 920570745911123804}
   - component: {fileID: 7419851746346234633}
   - component: {fileID: 4918808151270047894}
+  - component: {fileID: 6573667655807154013}
+  - component: {fileID: 6028721584763442807}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -919,13 +889,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawner: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
   _player: {fileID: 920570745911123804}
-  _snailHealth: {fileID: 4918808151270047894}
-  _diamondFX: {fileID: 3735278692255644185, guid: 9bd20474ad2b7764890f0ea67c4d7925, type: 3}
-  _deathFX: {fileID: 3735278692255644185, guid: 2efebd968d9dab049917a74a8af1eee7, type: 3}
-  _fxPointRightTop: {fileID: 945547696425075778}
-  _fxPointRightDown: {fileID: 2088026534}
-  _fxPointLeftTop: {fileID: 1650018582}
-  _fxPointLeftDown: {fileID: 476242635}
+  _health: {fileID: 4918808151270047894}
+  _diamond: {fileID: 6573667655807154013}
 --- !u!114 &4918808151270047894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -939,7 +904,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentHealth: 5
-  _maxHealth: 5
+--- !u!114 &6573667655807154013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4388412306629780530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1c5f74f3b04993a2a487c03691085a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6028721584763442807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4388412306629780530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87dca52e6be4500bb5e8337514e886e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 7419851746346234633}
+  _diamondFX: {fileID: 3735278692255644185, guid: 9bd20474ad2b7764890f0ea67c4d7925, type: 3}
+  _deathFX: {fileID: 3735278692255644185, guid: 2efebd968d9dab049917a74a8af1eee7, type: 3}
+  _fxPointRightTop: {fileID: 945547696425075778}
+  _fxPointRightDown: {fileID: 2088026534}
+  _fxPointLeftTop: {fileID: 1650018582}
+  _fxPointLeftDown: {fileID: 476242635}
 --- !u!1 &5051957189350315682
 GameObject:
   m_ObjectHideFlags: 0

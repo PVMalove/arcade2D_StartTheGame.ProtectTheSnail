@@ -1,9 +1,8 @@
-﻿using CodeBase.Infrastructure;
-using CodeBase.Infrastructure.Services;
+﻿using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Input;
 using UnityEngine;
 
-namespace CodeBase.Player
+namespace CodeBase.Gameplay.Player
 {
     public class PlayerMovement : MonoBehaviour
     {

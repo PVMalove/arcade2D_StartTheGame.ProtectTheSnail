@@ -5,35 +5,32 @@ using CodeBase.Infrastructure.Services.Randomizer;
 using UniRx;
 using UnityEngine;
 
-namespace CodeBase.Arrow
+namespace CodeBase.Gameplay.Arrow
 {
     public class Spawner : MonoBehaviour
     {
         private readonly CompositeDisposable _disposable = new();
 
-        private IRandomService _randomService;
-        private DateTimeOffset _timeOffset;
-
-        private bool _isPlay;
-        
         [SerializeField] private GameObject[] _arrows;
         [SerializeField] private Transform[] _spawnPoint;
 
         [Header("Interval spawn settings:")] 
         [SerializeField] private float _minInterval;
+
         [SerializeField] private float _maxInterval;
         [SerializeField] private float _interval;
         [SerializeField] private float _timeBetweenIntervals;
         [SerializeField] private float _nonLowerInterval;
         [SerializeField] private float _lowerInterval;
 
+        private IRandomService _randomService;
+        private DateTimeOffset _timeOffset;
+        private bool _isPlay;
+        
         public event Action<Position> OnArrowCollision;
 
-        public void Construct(IRandomService randomService)
-        {
+        public void Construct(IRandomService randomService) => 
             _randomService = randomService;
-        }
-
 
         private void Start()
         {
@@ -58,7 +55,7 @@ namespace CodeBase.Arrow
                 {
                     SpawnArrow();
                     _timeOffset = x.Timestamp;
-                    Debug.Log("Interval - " + _interval);
+                    //Debug.Log("Interval - " + _interval);
                 }).AddTo(_disposable);
         }
 

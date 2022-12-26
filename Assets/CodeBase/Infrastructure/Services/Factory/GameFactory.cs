@@ -1,4 +1,4 @@
-using CodeBase.Arrow;
+using CodeBase.Gameplay.Arrow;
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Services.Randomizer;
 using UnityEngine;
