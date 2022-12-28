@@ -1,6 +1,6 @@
 using System;
 
-namespace CodeBase.Logic
+namespace CodeBase.Gameplay.Logic
 {
     public interface IDiamond
     {

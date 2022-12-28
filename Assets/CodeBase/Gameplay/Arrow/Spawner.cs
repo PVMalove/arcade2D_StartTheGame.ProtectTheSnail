@@ -25,7 +25,7 @@ namespace CodeBase.Gameplay.Arrow
 
         private IRandomService _randomService;
         private DateTimeOffset _timeOffset;
-        private bool _isPlay;
+        public bool _isPlay;
         
         public event Action<Position> OnArrowCollision;
 
@@ -55,7 +55,7 @@ namespace CodeBase.Gameplay.Arrow
                 {
                     SpawnArrow();
                     _timeOffset = x.Timestamp;
-                    //Debug.Log("Interval - " + _interval);
+                    //Debug.Log("Interval spawn- " + _interval);
                 }).AddTo(_disposable);
         }
 
@@ -69,7 +69,7 @@ namespace CodeBase.Gameplay.Arrow
         }
 
         private bool CheckTimer(Timestamped<long> x) =>
-            x.Timestamp >= _timeOffset.AddSeconds(_interval) && _isPlay;
+            x.Timestamp >= _timeOffset.AddSeconds(_interval);
 
         private void OnGameStart()
         {

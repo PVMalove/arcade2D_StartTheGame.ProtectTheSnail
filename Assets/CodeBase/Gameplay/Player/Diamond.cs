@@ -1,5 +1,5 @@
 using System;
-using CodeBase.Logic;
+using CodeBase.Gameplay.Logic;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Player

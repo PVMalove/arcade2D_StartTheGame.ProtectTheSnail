@@ -1,6 +1,7 @@
+using CodeBase.Gameplay.Logic;
 using CodeBase.Gameplay.Player;
+using CodeBase.Infrastructure.Loader;
 using CodeBase.Infrastructure.Services.Factory;
-using CodeBase.Logic;
 using CodeBase.UI.Elements;
 using UnityEngine;
 
@@ -13,7 +14,8 @@ namespace CodeBase.Infrastructure.States
         private readonly LoadingCurtain _curtain;
         private readonly IGameFactory _gameFactory;
 
-        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain, IGameFactory gameFactory)
+        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain, 
+            IGameFactory gameFactory)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
@@ -38,9 +40,9 @@ namespace CodeBase.Infrastructure.States
 
         private void InitGameWorld()
         {
-            GameObject player = _gameFactory.CreatePlayer();
-            _gameFactory.CreateSpawner();
             _gameFactory.CreateSnail();
+            _gameFactory.CreateSpawner();
+            GameObject player = _gameFactory.CreatePlayer();
             InitHUD(player);
         }
 

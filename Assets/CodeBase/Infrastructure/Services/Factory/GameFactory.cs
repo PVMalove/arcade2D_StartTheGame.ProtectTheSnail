@@ -1,4 +1,5 @@
 using CodeBase.Gameplay.Arrow;
+using CodeBase.Gameplay.Player;
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Services.Randomizer;
 using UnityEngine;
@@ -9,20 +10,28 @@ namespace CodeBase.Infrastructure.Services.Factory
     {
         private readonly IAssetProvider _assets;
         private readonly IRandomService _randomService;
+        
+        private GameObject SpawnerObject { get; set; }
 
         public GameFactory(IAssetProvider assets, IRandomService randomService)
         {
             _assets = assets;
             _randomService = randomService;
         }
-        
-        public GameObject CreatePlayer() => 
-            _assets.Instantiate(AssetAddress.PlayerPath);
 
-        public void CreateSpawner()
+        public GameObject CreateSpawner()
         {
-          GameObject spawner = _assets.Instantiate(AssetAddress.SpawnerPath);
-          spawner.GetComponent<Spawner>().Construct(_randomService);
+            SpawnerObject = _assets.Instantiate(AssetAddress.SpawnerPath);
+            SpawnerObject.GetComponent<Spawner>().Construct(_randomService);
+            return SpawnerObject;
+        }
+
+        public GameObject CreatePlayer()
+        {
+            GameObject player = _assets.Instantiate(AssetAddress.PlayerPath);
+            player.GetComponent<PlayerCheckAttack>().Construct(SpawnerObject.GetComponent<Spawner>());
+            player.GetComponent<PlayerDead>().Construct(SpawnerObject.GetComponent<Spawner>());
+            return player;
         }
 
         public void CreateSnail() => 

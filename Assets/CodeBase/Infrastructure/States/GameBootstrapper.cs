@@ -1,5 +1,4 @@
-using System.Collections;
-using CodeBase.Logic;
+using CodeBase.Infrastructure.Loader;
 using Plugins.Yandex.CodeBase;
 using UnityEngine;
 

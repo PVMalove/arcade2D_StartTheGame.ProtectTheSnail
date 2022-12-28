@@ -1,6 +1,6 @@
+using CodeBase.Infrastructure.Loader;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.States;
-using CodeBase.Logic;
 using Plugins.Yandex.CodeBase;
 
 namespace CodeBase.Infrastructure

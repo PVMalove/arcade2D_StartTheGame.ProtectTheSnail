@@ -1,4 +1,4 @@
-﻿namespace CodeBase
+﻿namespace CodeBase.Gameplay
 {
     public enum Position
     {

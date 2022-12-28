@@ -15,6 +15,6 @@ MonoBehaviour:
   poolName: FX
   poolItems:
   - prefab: {fileID: 3735278692255644185, guid: 2efebd968d9dab049917a74a8af1eee7, type: 3}
-    size: 5
+    size: 4
   - prefab: {fileID: 3735278692255644185, guid: 9bd20474ad2b7764890f0ea67c4d7925, type: 3}
-    size: 5
+    size: 4

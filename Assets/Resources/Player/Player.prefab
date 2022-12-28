@@ -831,6 +831,7 @@ GameObject:
   - component: {fileID: 4918808151270047894}
   - component: {fileID: 6573667655807154013}
   - component: {fileID: 6028721584763442807}
+  - component: {fileID: 8759884842438905295}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -887,9 +888,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05d11dc5c124154a456c7118a7cab4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawner: {fileID: 558750125697889335, guid: b37846567be4b754ab34ef8aafc085f6, type: 3}
   _player: {fileID: 920570745911123804}
-  _health: {fileID: 4918808151270047894}
+  playerHealth: {fileID: 4918808151270047894}
   _diamond: {fileID: 6573667655807154013}
 --- !u!114 &4918808151270047894
 MonoBehaviour:
@@ -928,13 +928,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87dca52e6be4500bb5e8337514e886e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 7419851746346234633}
+  playerCheckAttack: {fileID: 7419851746346234633}
   _diamondFX: {fileID: 3735278692255644185, guid: 9bd20474ad2b7764890f0ea67c4d7925, type: 3}
   _HitFX: {fileID: 3735278692255644185, guid: 2efebd968d9dab049917a74a8af1eee7, type: 3}
   _fxPointRightTop: {fileID: 945547696425075778}
   _fxPointRightDown: {fileID: 2088026534}
   _fxPointLeftTop: {fileID: 1650018582}
   _fxPointLeftDown: {fileID: 476242635}
+--- !u!114 &8759884842438905295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4388412306629780530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 750a771cd13745a6ae901cf6bbe663fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 4918808151270047894}
+  _movement: {fileID: 920570745911123804}
+  _fx: {fileID: 6028721584763442807}
 --- !u!1 &5051957189350315682
 GameObject:
   m_ObjectHideFlags: 0

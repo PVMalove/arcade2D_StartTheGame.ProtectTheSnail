@@ -1,10 +1,10 @@
 using System;
-using CodeBase.Logic;
+using CodeBase.Gameplay.Logic;
 using UnityEngine;
 
-namespace CodeBase.Gameplay.Snail
+namespace CodeBase.Gameplay.Player
 {
-    public class Health : MonoBehaviour, IHealth
+    public class PlayerHealth : MonoBehaviour, IHealth
     {
         private const int MaxHealth = 5;
         

@@ -1,4 +1,5 @@
 using CodeBase.Infrastructure.AssetManagement;
+using CodeBase.Infrastructure.Loader;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Factory;
 using CodeBase.Infrastructure.Services.Input;

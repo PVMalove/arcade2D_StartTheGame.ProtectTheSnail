@@ -5,7 +5,7 @@ namespace CodeBase.Gameplay.Player
 {
     public class FX : MonoBehaviour
     {
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerCheckAttack playerCheckAttack;
         
         [Header("Effects settings:")] 
         [SerializeField] private GameObject _diamondFX;
@@ -19,14 +19,14 @@ namespace CodeBase.Gameplay.Player
 
         private void OnEnable()
         {
-            _player.DefenseFX += PlayFXDefense;
-            _player.HitFX += PlayFXHit;
+            playerCheckAttack.DefenseFX += PlayFXDefense;
+            playerCheckAttack.HitFX += PlayFXHit;
         }
 
         private void OnDisable()
         {
-            _player.DefenseFX -= PlayFXDefense;
-            _player.HitFX -= PlayFXHit;
+            playerCheckAttack.DefenseFX -= PlayFXDefense;
+            playerCheckAttack.HitFX -= PlayFXHit;
         }
 
         private void PlayFXDefense(Position playerPosition)

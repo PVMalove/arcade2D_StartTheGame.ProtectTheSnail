@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
+using CodeBase.Infrastructure.Loader;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Factory;
-using CodeBase.Logic;
 using Plugins.Yandex.CodeBase;
 
 namespace CodeBase.Infrastructure.States
@@ -12,7 +12,8 @@ namespace CodeBase.Infrastructure.States
         private readonly Dictionary<Type,IExitState> _states;
         private IExitState _activeState;
 
-        public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain curtain, LoadingYandexSDK yandex, AllServices services)
+        public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain curtain, LoadingYandexSDK yandex,
+            AllServices services)
         {
             _states = new Dictionary<Type, IExitState>
             {

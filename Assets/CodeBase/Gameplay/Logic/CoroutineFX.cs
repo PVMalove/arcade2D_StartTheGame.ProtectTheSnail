@@ -2,11 +2,11 @@ using System.Collections;
 using CodeBase.Infrastructure.Services.Pool;
 using UnityEngine;
 
-namespace CodeBase.Logic
+namespace CodeBase.Gameplay.Logic
 {
     public class CoroutineFX : MonoBehaviour
     {
-        private readonly float LifeTimeFX = 1.5f;
+        private const float LifeTimeFX = 1.5f;
 
         private void OnEnable() => 
             StartCoroutine(DespawnFX());
