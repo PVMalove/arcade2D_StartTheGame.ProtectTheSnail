@@ -930,7 +930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 7419851746346234633}
   _diamondFX: {fileID: 3735278692255644185, guid: 9bd20474ad2b7764890f0ea67c4d7925, type: 3}
-  _deathFX: {fileID: 3735278692255644185, guid: 2efebd968d9dab049917a74a8af1eee7, type: 3}
+  _HitFX: {fileID: 3735278692255644185, guid: 2efebd968d9dab049917a74a8af1eee7, type: 3}
   _fxPointRightTop: {fileID: 945547696425075778}
   _fxPointRightDown: {fileID: 2088026534}
   _fxPointLeftTop: {fileID: 1650018582}

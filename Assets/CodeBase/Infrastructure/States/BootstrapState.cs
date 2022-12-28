@@ -3,6 +3,7 @@ using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Factory;
 using CodeBase.Infrastructure.Services.Input;
 using CodeBase.Infrastructure.Services.Randomizer;
+using Plugins.Yandex.CodeBase;
 
 namespace CodeBase.Infrastructure.States
 {
@@ -14,19 +15,22 @@ namespace CodeBase.Infrastructure.States
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly AllServices _services;
+        private readonly LoadingYandexSDK _yandex;
 
-        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, AllServices services)
+        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingYandexSDK yandex, AllServices services)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
+            _yandex = yandex;
             _services = services;
-            
+
             RegisterServices();
         }
 
         public void Enter()
         {
             _sceneLoader.Loud(InitialScene, onLoaded: EnterLoadLevel);
+            _yandex.Loud();
         }
 
         public void Exit(){}

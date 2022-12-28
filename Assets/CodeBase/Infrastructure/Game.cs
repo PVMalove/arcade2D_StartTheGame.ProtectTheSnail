@@ -1,16 +1,17 @@
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.States;
 using CodeBase.Logic;
+using Plugins.Yandex.CodeBase;
 
 namespace CodeBase.Infrastructure
 {
     public class Game
     {
-        public GameStateMachine StateMachine;
+        public readonly GameStateMachine stateMachine;
 
-        public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain)
+        public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain, LoadingYandexSDK yandex)
         {
-            StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), curtain, AllServices.Container);
+            stateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), curtain, yandex, AllServices.Container);
         }
     }
 }
