@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -319.3}
-  m_SizeDelta: {x: 500, y: 100}
+  m_SizeDelta: {x: 1092.9, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3878520800433943581
 CanvasRenderer:
@@ -66,10 +66,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Loading...
+  m_text: 0000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a36fe9d64843e7f4299b47072347ecbc, type: 2}
+  m_sharedMaterial: {fileID: 1309300109650733302, guid: a36fe9d64843e7f4299b47072347ecbc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -85,16 +85,16 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
+  m_spriteAsset: {fileID: 11400000, guid: c41005c129ba4d66911b75229fd70b45, type: 2}
   m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
+  m_StyleSheet: {fileID: 11400000, guid: f952c082cb03451daed3ee968ac6c63e, type: 2}
   m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 81.2
-  m_fontSizeBase: 81.2
+  m_fontSize: 225.66
+  m_fontSizeBase: 225.66
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -249,7 +249,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 110}
+  m_SizeDelta: {x: 640, y: 440}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4486872934134059879
 CanvasRenderer:
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1971955621, guid: 9fe86f52cd7c88245b594506d986e5e1, type: 3}
+  m_Sprite: {fileID: 409176101, guid: ac16c3e099adf8846bad048937b97ffb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -301,23 +301,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975cd8ddbc844389b4fc5b4d17a7f80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _frameRare: 20
+  _frameRare: 7
   _loop: 1
   _sprites:
-  - {fileID: -1971955621, guid: 9fe86f52cd7c88245b594506d986e5e1, type: 3}
-  - {fileID: 1026066121, guid: 9fe86f52cd7c88245b594506d986e5e1, type: 3}
-  - {fileID: -1693021459, guid: 9fe86f52cd7c88245b594506d986e5e1, type: 3}
-  - {fileID: 596282285, guid: 9fe86f52cd7c88245b594506d986e5e1, type: 3}
-  - {fileID: -1510192397, guid: 9fe86f52cd7c88245b594506d986e5e1, type: 3}
-  - {fileID: -1948830537, guid: 9fe86f52cd7c88245b594506d986e5e1, type: 3}
-  - {fileID: -519793871, guid: 9fe86f52cd7c88245b594506d986e5e1, type: 3}
-  - {fileID: 1074726777, guid: 9fe86f52cd7c88245b594506d986e5e1, type: 3}
-  - {fileID: -2033239645, guid: 9fe86f52cd7c88245b594506d986e5e1, type: 3}
-  - {fileID: -1473639725, guid: 9fe86f52cd7c88245b594506d986e5e1, type: 3}
-  - {fileID: 549768281, guid: 9fe86f52cd7c88245b594506d986e5e1, type: 3}
-  - {fileID: 1709261561, guid: 9fe86f52cd7c88245b594506d986e5e1, type: 3}
-  - {fileID: -1424255763, guid: 9fe86f52cd7c88245b594506d986e5e1, type: 3}
-  - {fileID: 263864094, guid: 9fe86f52cd7c88245b594506d986e5e1, type: 3}
+  - {fileID: 1650821359, guid: ac16c3e099adf8846bad048937b97ffb, type: 3}
+  - {fileID: 1774276880, guid: ac16c3e099adf8846bad048937b97ffb, type: 3}
+  - {fileID: 1970292240, guid: ac16c3e099adf8846bad048937b97ffb, type: 3}
+  - {fileID: 934537310, guid: ac16c3e099adf8846bad048937b97ffb, type: 3}
+  - {fileID: 513248300, guid: ac16c3e099adf8846bad048937b97ffb, type: 3}
+  - {fileID: 613368837, guid: ac16c3e099adf8846bad048937b97ffb, type: 3}
+  - {fileID: 1958533361, guid: ac16c3e099adf8846bad048937b97ffb, type: 3}
 --- !u!1 &4486872934882380914
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,12 +387,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
