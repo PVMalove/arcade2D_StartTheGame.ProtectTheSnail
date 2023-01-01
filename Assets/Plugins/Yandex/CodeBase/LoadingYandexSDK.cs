@@ -9,8 +9,12 @@ namespace Plugins.Yandex.CodeBase
         private void Awake() =>
             DontDestroyOnLoad(this);
 
-        public void Loud() => 
+        public void Loud()
+        {
             StartCoroutine(Initialize());
+            
+            
+        }
 
         private IEnumerator Initialize()
         {

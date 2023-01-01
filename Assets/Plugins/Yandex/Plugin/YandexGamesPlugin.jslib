@@ -26,7 +26,6 @@ const library = {
             if (playerAccount.getMode() !== 'lite') {
               yandexGames.isAuthorized = true;
             }
-
             yandexGames.playerAccount = playerAccount;
           }).catch(function () { throw new Error('PlayerAccount failed to initialize.'); });
 

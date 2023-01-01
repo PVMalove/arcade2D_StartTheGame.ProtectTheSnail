@@ -28,7 +28,7 @@ namespace CodeBase.Gameplay.Player
 
             if (_input.LeftTop) 
                 MoveLeftTop();
-
+            
             if (_input.LeftDown) 
                 MoveLeftDown();
         }
