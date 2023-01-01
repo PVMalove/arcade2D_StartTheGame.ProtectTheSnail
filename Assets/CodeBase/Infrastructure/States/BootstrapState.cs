@@ -4,25 +4,21 @@ using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Factory;
 using CodeBase.Infrastructure.Services.Input;
 using CodeBase.Infrastructure.Services.Randomizer;
-using Plugins.Yandex.CodeBase;
+using CodeBase.Infrastructure.States.StateMachine;
 
 namespace CodeBase.Infrastructure.States
 {
     public class BootstrapState : IState
     {
-        private const string InitialScene = "Preloader";
-        private const string GameScene = "GameScene";
-
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly AllServices _services;
-        private readonly LoadingYandexSDK _yandex;
 
-        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingYandexSDK yandex, AllServices services)
+        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader,
+            AllServices services)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
-            _yandex = yandex;
             _services = services;
 
             RegisterServices();
@@ -30,14 +26,15 @@ namespace CodeBase.Infrastructure.States
 
         public void Enter()
         {
-            _sceneLoader.Loud(InitialScene, onLoaded: EnterLoadLevel);
-            _yandex.Loud();
+            _sceneLoader.Load(SceneNames.InitialScene, onLoaded: EnterLoadLevel);
         }
 
-        public void Exit(){}
+        public void Exit()
+        {
+        }
 
-        private void EnterLoadLevel() => 
-            _stateMachine.Enter<LoadLevelState, string>(GameScene);
+        private void EnterLoadLevel() =>
+            _stateMachine.LoadScene(SceneNames.GameScene);
 
         private void RegisterServices()
         {
@@ -49,7 +46,7 @@ namespace CodeBase.Infrastructure.States
                 _services.Single<IRandomService>()));
         }
 
-        private static IInputService InputService() => 
+        private static IInputService InputService() =>
             new KeyboardInputService();
     }
 }

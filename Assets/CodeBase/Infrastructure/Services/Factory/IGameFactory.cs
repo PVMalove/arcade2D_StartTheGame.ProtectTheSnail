@@ -4,9 +4,9 @@ namespace CodeBase.Infrastructure.Services.Factory
 {
     public interface IGameFactory : IService
     {
-        GameObject CreatePlayer();
+        void CreatePoolEntry();
         GameObject CreateSpawner();
-        void CreateSnail();
+        GameObject CreatePlayer();
         GameObject CreateHUD();
     }
 }

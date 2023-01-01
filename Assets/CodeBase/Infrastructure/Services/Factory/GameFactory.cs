@@ -19,6 +19,9 @@ namespace CodeBase.Infrastructure.Services.Factory
             _randomService = randomService;
         }
 
+        public void CreatePoolEntry() =>
+            _assets.Instantiate(AssetAddress.PoolEntryPath);
+
         public GameObject CreateSpawner()
         {
             SpawnerObject = _assets.Instantiate(AssetAddress.SpawnerPath);
@@ -33,9 +36,6 @@ namespace CodeBase.Infrastructure.Services.Factory
             player.GetComponent<PlayerDead>().Construct(SpawnerObject.GetComponent<Spawner>());
             return player;
         }
-
-        public void CreateSnail() => 
-            _assets.Instantiate(AssetAddress.SnailPath);
 
         public GameObject CreateHUD() =>
             _assets.Instantiate(AssetAddress.HUDPath);

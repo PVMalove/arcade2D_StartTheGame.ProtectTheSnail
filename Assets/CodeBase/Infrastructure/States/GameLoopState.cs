@@ -1,4 +1,5 @@
-using System;
+using CodeBase.Infrastructure.States.StateMachine;
+using UnityEngine;
 
 namespace CodeBase.Infrastructure.States
 {
@@ -8,11 +9,12 @@ namespace CodeBase.Infrastructure.States
         {
         }
 
-        public void Exit()
+        public void Enter()
         {
+            Debug.Log("GameLoopState");
         }
 
-        public void Enter()
+        public void Exit()
         {
         }
     }

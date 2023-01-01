@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 using AOT;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Plugins.Yandex.CodeBase

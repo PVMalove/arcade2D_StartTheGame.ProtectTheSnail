@@ -1,33 +1,38 @@
-using System.Collections;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.Loader
 {
     public class LoadingCurtain : MonoBehaviour
     {
-        [SerializeField] private CanvasGroup _curtain;
+        private CanvasGroup _curtain;
 
-        private void Awake() => 
+        private void Awake()
+        {
+            _curtain = GetComponent<CanvasGroup>();
             DontDestroyOnLoad(this);
+        }
 
         public void Show()
         {
             gameObject.SetActive(true);
-            _curtain.alpha = 1;
+            _curtain.alpha = 1f;
         }
 
         public void Hide() =>
-            StartCoroutine(FadeIn());
+            FadeIn();
 
-        private IEnumerator FadeIn()
+        private async void FadeIn()
         {
+            float fadeStep = 0.05f;
+            
             while (_curtain.alpha > 0)
             {
-                _curtain.alpha -= 0.05f;
-                yield return new WaitForSeconds(0.03f);
+                _curtain.alpha -= fadeStep;
+                await UniTask.Delay(30);
             }
-
-            gameObject.SetActive(false);
+            
+            Destroy(gameObject);
         }
     }
 }

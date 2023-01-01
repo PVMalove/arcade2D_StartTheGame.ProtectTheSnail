@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,29 +7,25 @@ namespace CodeBase.Infrastructure.Loader
 {
     public class SceneLoader
     {
-        private readonly ICoroutineRunner _coroutineRunner;
-        private readonly float _curtainDelay = 2f;
+        private readonly float _curtainDelay = 1f;
 
-        public SceneLoader(ICoroutineRunner coroutineRunner) => 
-            _coroutineRunner = coroutineRunner;
+        public void Load(string name, Action onLoaded = null) =>
+            LoadScene(name, onLoaded);
 
-        public void Loud(string name, Action onLoaded = null) => 
-            _coroutineRunner.StartCoroutine(LoadScene(name, onLoaded));
-
-        private IEnumerator LoadScene(string nextScene, Action onLoaded = null)
+        private async void LoadScene(string nextScene, Action onLoaded = null)
         {
             if (SceneManager.GetActiveScene().name == nextScene)
             {
                 onLoaded?.Invoke();
-                yield break;
+                return;
             }
             
             AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(nextScene);
-
             while (!waitNextScene.isDone)
-                yield return null;
+                await UniTask.Yield();
 
-            yield return new WaitForSeconds(_curtainDelay);
+            await UniTask.Delay(TimeSpan.FromSeconds(_curtainDelay));
+            
             onLoaded?.Invoke();
         }
     }

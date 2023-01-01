@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd4ac4f8bd5419bb91e61379b9e6144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _curtain: {fileID: 0}
-  _yandex: {fileID: 0}
+  _curtainPrefab: {fileID: 7362179889227084833, guid: 3bc589b6dd76c1e4994f45b42c1ff5f0, type: 3}
+  _yandexPrefab: {fileID: 4360210482887246428, guid: 1d0262e9c1b12f149af2adfcb1ae320f, type: 3}
