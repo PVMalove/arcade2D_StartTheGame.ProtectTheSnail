@@ -7,8 +7,6 @@ namespace CodeBase.Infrastructure.Loader
 {
     public class SceneLoader
     {
-        private readonly float _curtainDelay = 1f;
-
         public void Load(string name, Action onLoaded = null) =>
             LoadScene(name, onLoaded);
 
@@ -23,8 +21,6 @@ namespace CodeBase.Infrastructure.Loader
             AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(nextScene);
             while (!waitNextScene.isDone)
                 await UniTask.Yield();
-
-            await UniTask.Delay(TimeSpan.FromSeconds(_curtainDelay));
             
             onLoaded?.Invoke();
         }

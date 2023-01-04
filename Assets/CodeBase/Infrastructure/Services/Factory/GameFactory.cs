@@ -22,6 +22,9 @@ namespace CodeBase.Infrastructure.Services.Factory
         public void CreatePoolEntry() =>
             _assets.Instantiate(AssetAddress.PoolEntryPath);
 
+        public void CreateTutorial() =>
+            _assets.Instantiate(AssetAddress.TutorialWindowPath);
+
         public GameObject CreateSpawner()
         {
             SpawnerObject = _assets.Instantiate(AssetAddress.SpawnerPath);

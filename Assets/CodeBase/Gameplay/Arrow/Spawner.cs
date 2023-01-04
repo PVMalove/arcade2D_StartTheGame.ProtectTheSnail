@@ -1,9 +1,11 @@
 ﻿using System;
-using System.Collections;
 using CodeBase.Infrastructure.Services.Pool;
 using CodeBase.Infrastructure.Services.Randomizer;
+using CodeBase.UI.Elements;
+using Cysharp.Threading.Tasks;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace CodeBase.Gameplay.Arrow
 {
@@ -25,23 +27,30 @@ namespace CodeBase.Gameplay.Arrow
 
         private IRandomService _randomService;
         private DateTimeOffset _timeOffset;
+        private CloseButtonView _TutorialView;
         public bool _isPlay;
-        
+
         public event Action<Position> OnArrowCollision;
 
         public void Construct(IRandomService randomService) => 
             _randomService = randomService;
 
-        private void Start()
+        private void OnEnable()
         {
-            OnGameStart();
-            UpdateSpawn();
+            _TutorialView = FindObjectOfType<CloseButtonView>();
+            Assert.IsNotNull(_TutorialView, "Close button view not found");
+            _TutorialView.CloseWindow += OnGameStart;
         }
+
+        private void Start() => 
+            UpdateSpawn();
 
         private void OnDisable()
         {
             if (_disposable != null)
                 _disposable.Clear();
+            
+            _TutorialView.CloseWindow -= OnGameStart;
         }
 
         private void UpdateSpawn()
@@ -69,23 +78,23 @@ namespace CodeBase.Gameplay.Arrow
         }
 
         private bool CheckTimer(Timestamped<long> x) =>
-            x.Timestamp >= _timeOffset.AddSeconds(_interval);
+            x.Timestamp >= _timeOffset.AddSeconds(_interval) && _isPlay;
 
         private void OnGameStart()
         {
             _isPlay = true;
-            StartCoroutine(IntervalCounter());
+            IntervalCounter();
         }
 
-        private IEnumerator IntervalCounter()
+        private async void IntervalCounter()
         {
-            yield return new WaitForSeconds(_nonLowerInterval);
-
+            await UniTask.Delay(TimeSpan.FromSeconds(_nonLowerInterval));
+            
             while (_isPlay)
             {
-                yield return new WaitForSeconds(_timeBetweenIntervals);
+                await UniTask.Delay(TimeSpan.FromSeconds(_timeBetweenIntervals));
+                
                 _interval -= _lowerInterval;
-
                 _interval = Math.Clamp(_interval, _minInterval, _maxInterval);
             }
         }

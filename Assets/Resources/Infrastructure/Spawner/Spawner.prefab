@@ -256,7 +256,7 @@ MonoBehaviour:
   _timeBetweenIntervals: 10
   _nonLowerInterval: 30
   _lowerInterval: 0.05
-  _isPlay: 1
+  _isPlay: 0
 --- !u!1001 &518819551544243329
 PrefabInstance:
   m_ObjectHideFlags: 0

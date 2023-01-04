@@ -32,7 +32,7 @@ namespace CodeBase.Infrastructure.Loader
                 await UniTask.Delay(30);
             }
             
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

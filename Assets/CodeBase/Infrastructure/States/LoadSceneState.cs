@@ -43,6 +43,7 @@ namespace CodeBase.Infrastructure.States
         private void InitGameWorld()
         {
             _gameFactory.CreatePoolEntry();
+            _gameFactory.CreateTutorial();
             _gameFactory.CreateSpawner();
             GameObject player = _gameFactory.CreatePlayer();
             InitHUD(player);
