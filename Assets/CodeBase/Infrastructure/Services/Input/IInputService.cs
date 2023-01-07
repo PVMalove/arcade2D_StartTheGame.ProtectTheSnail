@@ -6,5 +6,10 @@ namespace CodeBase.Infrastructure.Services.Input
         bool RightDown { get; }
         bool LeftTop { get; }
         bool LeftDown { get; }
+        
+        bool Top { get; }
+        bool Down { get; }
+        bool Left { get; }
+        bool Right { get; }
     }
 }

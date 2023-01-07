@@ -8,9 +8,9 @@ namespace CodeBase.Infrastructure.Loader
     public class SceneLoader
     {
         public void Load(string name, Action onLoaded = null) =>
-            LoadScene(name, onLoaded);
+            LoadScene(name, onLoaded).Forget();
 
-        private async void LoadScene(string nextScene, Action onLoaded = null)
+        private async UniTaskVoid LoadScene(string nextScene, Action onLoaded = null)
         {
             if (SceneManager.GetActiveScene().name == nextScene)
             {

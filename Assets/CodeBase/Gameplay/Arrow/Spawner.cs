@@ -29,6 +29,7 @@ namespace CodeBase.Gameplay.Arrow
         private DateTimeOffset _timeOffset;
         private CloseButtonView _TutorialView;
         public bool _isPlay;
+        private IScheduler _mainThreadIgnoreTimeScale;
 
         public event Action<Position> OnArrowCollision;
 
@@ -64,7 +65,7 @@ namespace CodeBase.Gameplay.Arrow
                 {
                     SpawnArrow();
                     _timeOffset = x.Timestamp;
-                    //Debug.Log("Interval spawn- " + _interval);
+                    Debug.Log("Interval spawn- " + _interval);
                 }).AddTo(_disposable);
         }
 
@@ -77,16 +78,21 @@ namespace CodeBase.Gameplay.Arrow
             ObjectPool.Spawn(_arrows[index], _spawnPoint[index].position, _arrows[index].transform.rotation);
         }
 
-        private bool CheckTimer(Timestamped<long> x) =>
-            x.Timestamp >= _timeOffset.AddSeconds(_interval) && _isPlay;
+        private bool CheckTimer(Timestamped<long> x)
+        {
+            if (IsGamePause())
+                return false;
+
+            return x.Timestamp >= _timeOffset.AddSeconds(_interval) && _isPlay;
+        }
 
         private void OnGameStart()
         {
             _isPlay = true;
-            IntervalCounter();
+            IntervalCounter().Forget();
         }
 
-        private async void IntervalCounter()
+        private async UniTaskVoid IntervalCounter()
         {
             await UniTask.Delay(TimeSpan.FromSeconds(_nonLowerInterval));
             
@@ -98,5 +104,8 @@ namespace CodeBase.Gameplay.Arrow
                 _interval = Math.Clamp(_interval, _minInterval, _maxInterval);
             }
         }
+
+        private bool IsGamePause() => 
+            Time.timeScale == 0;
     }
 }

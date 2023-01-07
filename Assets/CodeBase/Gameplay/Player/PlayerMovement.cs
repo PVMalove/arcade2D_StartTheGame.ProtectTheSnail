@@ -31,6 +31,18 @@ namespace CodeBase.Gameplay.Player
             
             if (_input.LeftDown) 
                 MoveLeftDown();
+        
+            if(_input.Top) 
+                MoveTop();
+            
+            if(_input.Down) 
+                MoveDown();
+            
+            if(_input.Left) 
+                MoveLeft();
+            
+            if(_input.Right) 
+                MoveRight();
         }
 
         private void MoveRightTop()
@@ -73,6 +85,38 @@ namespace CodeBase.Gameplay.Player
 
             Position = Position.LeftDown;
             _moveLeftDown.SetActive(true);
+        }
+
+        private void MoveRight()
+        {
+            if (Position == Position.LeftTop)
+                MoveRightTop();
+            else if (Position == Position.LeftDown)
+                MoveRightDown();
+        }
+
+        private void MoveLeft()
+        {
+            if (Position == Position.RightTop)
+                MoveLeftTop();
+            else if (Position == Position.RightDown)
+                MoveLeftDown();
+        }
+
+        private void MoveDown()
+        {
+            if (Position == Position.LeftTop)
+                MoveLeftDown();
+            else if (Position == Position.RightTop)
+                MoveRightDown();
+        }
+
+        private void MoveTop()
+        {
+            if (Position == Position.LeftDown)
+                MoveLeftTop();
+            else if (Position == Position.RightDown)
+                MoveRightTop();
         }
     }
 }

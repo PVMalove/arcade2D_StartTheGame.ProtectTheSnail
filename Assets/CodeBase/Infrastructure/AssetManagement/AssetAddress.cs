@@ -6,6 +6,6 @@ namespace CodeBase.Infrastructure.AssetManagement
         public const string SpawnerPath = "Infrastructure/Spawner/Spawner";
         public const string PoolEntryPath = "Infrastructure/Pool/PoolEntry";
         public const string HUDPath = "UI/HUD";
-        public const string TutorialWindowPath = "UI/TutorialWindow";
+        public const string TutorialPanelPath = "UI/TutorialPanel";
     }
 }

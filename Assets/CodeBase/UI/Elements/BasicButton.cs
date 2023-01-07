@@ -1,6 +1,5 @@
 ﻿using System;
 using DG.Tweening;
-using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,7 +13,6 @@ namespace CodeBase.UI.Elements
     public sealed class BasicButton : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
     {
         [SerializeField] private bool _needAnimateOnClick = true;
-        [SerializeField] private TextMeshProUGUI _text;
 
         private Button _button;
 
@@ -29,13 +27,12 @@ namespace CodeBase.UI.Elements
 
 
         private Button.ButtonClickedEvent _onClick = new();
+        private Button.ButtonClickedEvent OnClick => _button ? _button.onClick : _onClick;
         private ReactiveProperty<bool> _isDown = new(false);
 
         private event Action _downCallback;
         private event Action _upCallback;
         private event Action _soundClickCallback;
-
-        public Button.ButtonClickedEvent OnClick => _button ? _button.onClick : _onClick;
 
 
         public void Awake()

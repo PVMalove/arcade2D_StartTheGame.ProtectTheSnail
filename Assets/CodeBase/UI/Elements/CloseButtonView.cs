@@ -1,26 +1,21 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace CodeBase.UI.Elements
 {
     public class CloseButtonView : MonoBehaviour
     {
-        [SerializeField] private Button _closeButton;
-        [SerializeField] private GameObject _closeWindow;
+        [SerializeField] private BasicButton _closeButton;
 
         public event Action CloseWindow;
 
         private void OnEnable() => 
-            _closeButton.onClick.AddListener(Close);
+            _closeButton.AddListener(Close);
 
         private void OnDisable() => 
-            _closeButton.onClick.RemoveListener(Close);
+            _closeButton.RemoveListener(Close);
 
-        private void Close()
-        {
+        private void Close() => 
             CloseWindow?.Invoke();
-            _closeWindow.SetActive(false);
-        }
     }
 }

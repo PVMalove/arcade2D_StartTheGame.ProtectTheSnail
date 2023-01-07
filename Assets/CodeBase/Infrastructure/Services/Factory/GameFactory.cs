@@ -23,7 +23,7 @@ namespace CodeBase.Infrastructure.Services.Factory
             _assets.Instantiate(AssetAddress.PoolEntryPath);
 
         public void CreateTutorial() =>
-            _assets.Instantiate(AssetAddress.TutorialWindowPath);
+            _assets.Instantiate(AssetAddress.TutorialPanelPath);
 
         public GameObject CreateSpawner()
         {
