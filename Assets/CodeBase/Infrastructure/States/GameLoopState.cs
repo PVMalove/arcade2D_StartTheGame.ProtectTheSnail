@@ -1,3 +1,5 @@
+using CodeBase.Infrastructure.AssetManagement;
+using CodeBase.Infrastructure.Loader;
 using CodeBase.Infrastructure.Services.Pool;
 using CodeBase.Infrastructure.States.Interface;
 using CodeBase.Infrastructure.States.StateMachine;
@@ -11,6 +13,7 @@ namespace CodeBase.Infrastructure.States
     {
         private RestartView _view;
         private readonly GameStateMachine _stateMachine;
+
 
         public GameLoopState(GameStateMachine stateMachine)
         {

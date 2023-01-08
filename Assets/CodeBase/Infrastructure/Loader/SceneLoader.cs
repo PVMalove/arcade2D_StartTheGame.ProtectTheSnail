@@ -8,8 +8,13 @@ namespace CodeBase.Infrastructure.Loader
 {
     public class SceneLoader
     {
-       public void Load(SceneNames sceneName, Action onLoaded = null) =>
+        public SceneNames PreviousSceneName { get; private set; }
+        
+        public void Load(SceneNames sceneName, Action onLoaded = null)
+        {
+            GetPreviousSceneName();
             LoadScene(sceneName, onLoaded).Forget();
+        }
 
         private async UniTaskVoid LoadScene(SceneNames sceneName, Action onLoaded = null)
         {
@@ -20,12 +25,19 @@ namespace CodeBase.Infrastructure.Loader
                 onLoaded?.Invoke();
                 return;
             }
-            
+
             AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(nextScene);
             while (!waitNextScene.isDone)
                 await UniTask.Yield();
-            
+
             onLoaded?.Invoke();
+        }
+
+        private void GetPreviousSceneName()
+        {
+            string loadedSceneName = SceneManager.GetActiveScene().name;
+            if (Enum.TryParse(loadedSceneName, out SceneNames previousSceneName))
+                PreviousSceneName = previousSceneName;
         }
     }
 }
