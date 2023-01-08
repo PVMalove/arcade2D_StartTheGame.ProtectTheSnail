@@ -11,8 +11,11 @@ namespace Plugins.Yandex.CodeBase
         public bool IsAuthorized => IsInitialized && PlayerAccount.IsAuthorized; 
         public bool HasPersonalDataPermission => PlayerAccount.HasPersonalProfileDataPermission;
 
-        private void Awake() =>
+        private void Awake()
+        {
+            Load();
             DontDestroyOnLoad(this);
+        }
 
         public void Load() => 
             StartCoroutine(Initialize());

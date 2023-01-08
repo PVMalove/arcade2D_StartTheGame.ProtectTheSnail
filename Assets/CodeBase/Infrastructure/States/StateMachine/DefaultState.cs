@@ -1,4 +1,6 @@
-﻿namespace CodeBase.Infrastructure.States.StateMachine
+﻿using CodeBase.Infrastructure.States.Interface;
+
+namespace CodeBase.Infrastructure.States.StateMachine
 {
     public class DefaultState : IState
     {

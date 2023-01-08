@@ -2,6 +2,8 @@ using CodeBase.Gameplay.Arrow;
 using CodeBase.Gameplay.Player;
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Services.Randomizer;
+using CodeBase.UI.Elements.View;
+using CodeBase.UI.Windows;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.Services.Factory
@@ -22,9 +24,6 @@ namespace CodeBase.Infrastructure.Services.Factory
         public void CreatePoolEntry() =>
             _assets.Instantiate(AssetAddress.PoolEntryPath);
 
-        public void CreateTutorial() =>
-            _assets.Instantiate(AssetAddress.TutorialPanelPath);
-
         public GameObject CreateSpawner()
         {
             SpawnerObject = _assets.Instantiate(AssetAddress.SpawnerPath);
@@ -42,5 +41,17 @@ namespace CodeBase.Infrastructure.Services.Factory
 
         public GameObject CreateHUD() =>
             _assets.Instantiate(AssetAddress.HUDPath);
+
+        public MainMenuView CreateMainMenuUI()
+        {
+            GameObject mainMenuObject = _assets.Instantiate(AssetAddress.MainMenuPath);
+            return mainMenuObject.GetComponent<MainMenuView>();
+        }
+
+        public TutorialPanel CreateTutorialPanelUI()
+        {
+            GameObject tutorialPanelObject = _assets.Instantiate(AssetAddress.TutorialPanelPath);
+            return tutorialPanelObject.GetComponent<TutorialPanel>();
+        }
     }
 }

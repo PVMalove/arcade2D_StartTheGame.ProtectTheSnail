@@ -4,6 +4,7 @@ using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Factory;
 using CodeBase.Infrastructure.Services.Input;
 using CodeBase.Infrastructure.Services.Randomizer;
+using CodeBase.Infrastructure.States.Interface;
 using CodeBase.Infrastructure.States.StateMachine;
 
 namespace CodeBase.Infrastructure.States
@@ -24,17 +25,14 @@ namespace CodeBase.Infrastructure.States
             RegisterServices();
         }
 
-        public void Enter()
-        {
-            _sceneLoader.Load(SceneNames.InitialScene, onLoaded: EnterLoadLevel);
-        }
+        public void Enter() => 
+            _sceneLoader.Load(SceneNames.Preloader, onLoaded: OnLoaded);
 
-        public void Exit()
-        {
-        }
+        public void Exit() { }
 
-        private void EnterLoadLevel() =>
-            _stateMachine.LoadScene(SceneNames.GameScene);
+        private void OnLoaded() =>
+            _stateMachine.Enter<LoadProgressState>();
+           
 
         private void RegisterServices()
         {

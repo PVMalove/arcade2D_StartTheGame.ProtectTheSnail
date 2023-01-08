@@ -1,4 +1,4 @@
-namespace CodeBase.Infrastructure.States
+namespace CodeBase.Infrastructure.States.Interface
 {
     public interface IState : IExitState
     {
@@ -7,7 +7,7 @@ namespace CodeBase.Infrastructure.States
 
     public interface IPayloadedState<TPayloaded> : IExitState
     {
-        void Enter(TPayloaded payloaded);
+        void Enter(TPayloaded payload);
     }
 
     public interface IExitState

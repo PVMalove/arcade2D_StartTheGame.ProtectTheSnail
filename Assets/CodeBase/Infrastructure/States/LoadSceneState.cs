@@ -1,13 +1,15 @@
 using CodeBase.Gameplay.Logic;
+using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Loader;
 using CodeBase.Infrastructure.Services.Factory;
+using CodeBase.Infrastructure.States.Interface;
 using CodeBase.Infrastructure.States.StateMachine;
 using CodeBase.UI.Elements;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.States
 {
-    public class LoadSceneState : IPayloadedState<string>
+    public class LoadSceneState : IPayloadedState<SceneNames>
     {
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
@@ -23,7 +25,7 @@ namespace CodeBase.Infrastructure.States
             _gameFactory = gameFactory;
         }
 
-        public void Enter(string sceneName)
+        public void Enter(SceneNames sceneName)
         {
             if (_curtain != null)
                 _curtain.Show();
@@ -43,7 +45,6 @@ namespace CodeBase.Infrastructure.States
         private void InitGameWorld()
         {
             _gameFactory.CreatePoolEntry();
-            _gameFactory.CreateTutorial();
             _gameFactory.CreateSpawner();
             GameObject player = _gameFactory.CreatePlayer();
             InitHUD(player);

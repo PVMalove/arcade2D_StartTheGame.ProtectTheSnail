@@ -36,12 +36,8 @@ namespace CodeBase.Gameplay.Arrow
         public void Construct(IRandomService randomService) => 
             _randomService = randomService;
 
-        private void OnEnable()
-        {
-            _TutorialView = FindObjectOfType<CloseButtonView>();
-            Assert.IsNotNull(_TutorialView, "Close button view not found");
-            _TutorialView.CloseWindow += OnGameStart;
-        }
+        private void OnEnable() => 
+            OnGameStart();
 
         private void Start() => 
             UpdateSpawn();
@@ -50,8 +46,6 @@ namespace CodeBase.Gameplay.Arrow
         {
             if (_disposable != null)
                 _disposable.Clear();
-            
-            _TutorialView.CloseWindow -= OnGameStart;
         }
 
         private void UpdateSpawn()

@@ -15,5 +15,8 @@ namespace CodeBase.UI.Windows
 
         private void ClosePanel() => 
             gameObject.SetActive(false);
+
+        public void Show() => 
+            gameObject.SetActive(true);
     }
 }

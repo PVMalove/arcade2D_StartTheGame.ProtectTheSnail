@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5107543542213538741
 MonoBehaviour:
@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bootstrapperPrefab: {fileID: 411419318817450992, guid: fc17980de4079fc4792f430344e11021, type: 3}
+  _yandex: {fileID: 4360210482887246428, guid: 1d0262e9c1b12f149af2adfcb1ae320f, type: 3}

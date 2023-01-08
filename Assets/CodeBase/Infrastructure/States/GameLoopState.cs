@@ -1,4 +1,5 @@
 using CodeBase.Infrastructure.Services.Pool;
+using CodeBase.Infrastructure.States.Interface;
 using CodeBase.Infrastructure.States.StateMachine;
 using CodeBase.UI.Elements;
 using UnityEngine;

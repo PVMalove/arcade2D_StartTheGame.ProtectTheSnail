@@ -1,4 +1,5 @@
 using System;
+using CodeBase.Infrastructure.AssetManagement;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,11 +8,13 @@ namespace CodeBase.Infrastructure.Loader
 {
     public class SceneLoader
     {
-        public void Load(string name, Action onLoaded = null) =>
-            LoadScene(name, onLoaded).Forget();
+       public void Load(SceneNames sceneName, Action onLoaded = null) =>
+            LoadScene(sceneName, onLoaded).Forget();
 
-        private async UniTaskVoid LoadScene(string nextScene, Action onLoaded = null)
+        private async UniTaskVoid LoadScene(SceneNames sceneName, Action onLoaded = null)
         {
+            string nextScene = sceneName.ToString();
+            
             if (SceneManager.GetActiveScene().name == nextScene)
             {
                 onLoaded?.Invoke();

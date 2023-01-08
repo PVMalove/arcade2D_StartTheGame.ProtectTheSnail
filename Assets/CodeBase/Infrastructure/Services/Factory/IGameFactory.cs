@@ -1,3 +1,5 @@
+using CodeBase.UI.Elements.View;
+using CodeBase.UI.Windows;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.Services.Factory
@@ -5,9 +7,10 @@ namespace CodeBase.Infrastructure.Services.Factory
     public interface IGameFactory : IService
     {
         void CreatePoolEntry();
-        void CreateTutorial();
         GameObject CreateSpawner();
         GameObject CreatePlayer();
         GameObject CreateHUD();
+        MainMenuView CreateMainMenuUI();
+        TutorialPanel CreateTutorialPanelUI();
     }
 }
