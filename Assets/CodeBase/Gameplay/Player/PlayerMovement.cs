@@ -1,10 +1,11 @@
 ﻿using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Input;
+using CodeBase.Infrastructure.Services.PauseService;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Player
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, IPauseHandler
     {
         [SerializeField] private GameObject _moveRightTop;
         [SerializeField] private GameObject _moveRightDown;
@@ -14,35 +15,49 @@ namespace CodeBase.Gameplay.Player
         public Position Position;
 
         private IInputService _input;
+        private bool _isPaused;
 
         private void Awake() =>
             _input = AllServices.Container.Single<IInputService>();
 
         private void Update()
         {
+            if(_isPaused)
+                return;
+            
+            ControlButtonQEAD();
+
+            ControlButtonArrows();
+        }
+
+        private void ControlButtonArrows()
+        {
+            if (_input.Top)
+                MoveTop();
+
+            if (_input.Down)
+                MoveDown();
+
+            if (_input.Left)
+                MoveLeft();
+
+            if (_input.Right)
+                MoveRight();
+        }
+
+        private void ControlButtonQEAD()
+        {
             if (_input.RightTop)
                 MoveRightTop();
 
-            if (_input.RightDown) 
+            if (_input.RightDown)
                 MoveRightDown();
 
-            if (_input.LeftTop) 
+            if (_input.LeftTop)
                 MoveLeftTop();
-            
-            if (_input.LeftDown) 
+
+            if (_input.LeftDown)
                 MoveLeftDown();
-        
-            if(_input.Top) 
-                MoveTop();
-            
-            if(_input.Down) 
-                MoveDown();
-            
-            if(_input.Left) 
-                MoveLeft();
-            
-            if(_input.Right) 
-                MoveRight();
         }
 
         private void MoveRightTop()
@@ -118,5 +133,8 @@ namespace CodeBase.Gameplay.Player
             else if (Position == Position.RightDown)
                 MoveRightTop();
         }
+
+        public void OnPauseChanged(bool isPaused) => 
+            _isPaused = isPaused;
     }
 }

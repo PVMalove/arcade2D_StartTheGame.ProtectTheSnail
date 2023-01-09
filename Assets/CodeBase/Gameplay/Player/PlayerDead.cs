@@ -1,4 +1,5 @@
 using CodeBase.Gameplay.Arrow;
+using CodeBase.Infrastructure.Services.PauseService;
 using CodeBase.Infrastructure.Services.Pool;
 using UnityEngine;
 
@@ -9,12 +10,16 @@ namespace CodeBase.Gameplay.Player
         [SerializeField] private PlayerHealth _health;
         [SerializeField] private PlayerMovement _movement;
         [SerializeField] private FX _fx;
-        
+
+        private IPauseService _pauseService;
         private Spawner _spawner;
         private bool _isDead;
 
-        public void Construct(Spawner spawner) => 
+        public void Construct(Spawner spawner, IPauseService pauseService)
+        {
             _spawner = spawner;
+            _pauseService = pauseService;
+        }
 
         private void Start() => 
             _health.HealthChanged += HealthChanged;
@@ -29,10 +34,10 @@ namespace CodeBase.Gameplay.Player
         {
             _isDead = true;
             ObjectPool.DestroyAllPools();
+            _pauseService.SetPause(true);
             
-            _movement.enabled = false;
             _fx.enabled = false;
-            _spawner.enabled = false;
+            //_spawner.enabled = false;
             
             Debug.Log("<Interface>.LosePanel.Enable();");
         }

@@ -12,7 +12,7 @@ namespace CodeBase.UI.Elements
         private void OnEnable() => 
             _closeButton.AddListener(Close);
 
-        private void OnDisable() => 
+        private void OnDestroy() => 
             _closeButton.RemoveListener(Close);
 
         private void Close() => 

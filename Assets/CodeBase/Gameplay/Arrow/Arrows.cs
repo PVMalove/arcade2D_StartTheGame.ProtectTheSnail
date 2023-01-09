@@ -15,7 +15,7 @@ namespace CodeBase.Gameplay.Arrow
         [SerializeField] private Position _position;
         [SerializeField] private float _displayPeriod;
         [SerializeField] private Spawner _mediator;
-
+        
         private void OnEnable() =>
             ArrowShot();
 

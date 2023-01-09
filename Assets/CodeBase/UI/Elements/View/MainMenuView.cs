@@ -18,15 +18,16 @@ namespace CodeBase.UI.Elements.View
             _tutorialButton.onClick.AddListener(OnTutorialButtonClicked);
         }
 
-        private void OnDisable() =>
+        private void OnDisable()
+        {
             _playButton.onClick.RemoveListener(OnPlayButtonClicked);
+            _tutorialButton.onClick.RemoveListener(OnTutorialButtonClicked);
+        }
 
         private void OnPlayButtonClicked() => 
             StartGame?.Invoke();
 
-        private void OnTutorialButtonClicked()
-        {
+        private void OnTutorialButtonClicked() => 
             OnTutorialPanel?.Invoke();
-        }
     }
 }

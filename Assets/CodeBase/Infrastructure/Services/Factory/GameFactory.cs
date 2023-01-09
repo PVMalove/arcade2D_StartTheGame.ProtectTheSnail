@@ -1,6 +1,7 @@
 using CodeBase.Gameplay.Arrow;
 using CodeBase.Gameplay.Player;
 using CodeBase.Infrastructure.AssetManagement;
+using CodeBase.Infrastructure.Services.PauseService;
 using CodeBase.Infrastructure.Services.Randomizer;
 using CodeBase.UI.Elements.View;
 using CodeBase.UI.Windows;
@@ -12,13 +13,15 @@ namespace CodeBase.Infrastructure.Services.Factory
     {
         private readonly IAssetProvider _assets;
         private readonly IRandomService _randomService;
-        
+        private readonly IPauseService _pauseService;
+
         private GameObject SpawnerObject { get; set; }
 
-        public GameFactory(IAssetProvider assets, IRandomService randomService)
+        public GameFactory(IAssetProvider assets, IRandomService randomService, IPauseService pauseService)
         {
             _assets = assets;
             _randomService = randomService;
+            _pauseService = pauseService;
         }
 
         public void CreatePoolEntry() =>
@@ -28,6 +31,7 @@ namespace CodeBase.Infrastructure.Services.Factory
         {
             SpawnerObject = _assets.Instantiate(AssetAddress.SpawnerPath);
             SpawnerObject.GetComponent<Spawner>().Construct(_randomService);
+            Register(SpawnerObject);
             return SpawnerObject;
         }
 
@@ -35,7 +39,8 @@ namespace CodeBase.Infrastructure.Services.Factory
         {
             GameObject player = _assets.Instantiate(AssetAddress.PlayerPath);
             player.GetComponent<PlayerCheckAttack>().Construct(SpawnerObject.GetComponent<Spawner>());
-            player.GetComponent<PlayerDead>().Construct(SpawnerObject.GetComponent<Spawner>());
+            player.GetComponent<PlayerDead>().Construct(SpawnerObject.GetComponent<Spawner>(), _pauseService);
+            Register(player);
             return player;
         }
 
@@ -52,6 +57,17 @@ namespace CodeBase.Infrastructure.Services.Factory
         {
             GameObject tutorialPanelObject = _assets.Instantiate(AssetAddress.TutorialPanelPath);
             return tutorialPanelObject.GetComponent<TutorialPanel>();
+        }
+
+        private void Register(GameObject gameObject)
+        {
+            RegisterPauseHandler(gameObject);
+        }
+
+        private void RegisterPauseHandler(GameObject gameObject)
+        {
+            foreach (IPauseHandler pauseHandler in gameObject.GetComponentsInChildren<IPauseHandler>())
+                _pauseService.Register(pauseHandler);
         }
     }
 }

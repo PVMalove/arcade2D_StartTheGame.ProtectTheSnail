@@ -3,6 +3,7 @@ using CodeBase.Infrastructure.Loader;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Factory;
 using CodeBase.Infrastructure.Services.Input;
+using CodeBase.Infrastructure.Services.PauseService;
 using CodeBase.Infrastructure.Services.Randomizer;
 using CodeBase.Infrastructure.States.Interface;
 using CodeBase.Infrastructure.States.StateMachine;
@@ -37,11 +38,13 @@ namespace CodeBase.Infrastructure.States
         private void RegisterServices()
         {
             _services.RegisterSingle(InputService());
+            _services.RegisterSingle<IPauseService>(new PauseService());
             _services.RegisterSingle<IRandomService>(new RandomService());
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
             _services.RegisterSingle<IGameFactory>(new GameFactory(
                 _services.Single<IAssetProvider>(),
-                _services.Single<IRandomService>()));
+                _services.Single<IRandomService>(),
+                _services.Single<IPauseService>()));
         }
 
         private static IInputService InputService() =>

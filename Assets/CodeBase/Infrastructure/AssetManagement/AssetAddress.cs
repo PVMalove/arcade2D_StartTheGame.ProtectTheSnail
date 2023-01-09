@@ -8,5 +8,6 @@ namespace CodeBase.Infrastructure.AssetManagement
         public const string SpawnerPath = "Infrastructure/Spawner/Spawner";
         public const string PlayerPath = "Player/Player";
         public const string PoolEntryPath = "Infrastructure/Pool/PoolEntry";
+        public const string UICanvas = "UI/UICanvas";
     }
 }
