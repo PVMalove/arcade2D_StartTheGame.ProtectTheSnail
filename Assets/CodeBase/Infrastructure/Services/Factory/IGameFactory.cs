@@ -10,7 +10,6 @@ namespace CodeBase.Infrastructure.Services.Factory
         GameObject CreateSpawner();
         GameObject CreatePlayer();
         GameObject CreateHUD();
-        MainMenuView CreateMainMenuUI();
-        TutorialPanel CreateTutorialPanelUI();
+        StartGameView CreateMainMenu();
     }
 }

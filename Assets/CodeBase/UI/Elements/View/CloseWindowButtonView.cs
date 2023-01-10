@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-namespace CodeBase.UI.Elements
+namespace CodeBase.UI.Elements.View
 {
-    public class CloseButtonView : MonoBehaviour
+    public class CloseWindowButtonView : MonoBehaviour
     {
         [SerializeField] private BasicButton _closeButton;
 

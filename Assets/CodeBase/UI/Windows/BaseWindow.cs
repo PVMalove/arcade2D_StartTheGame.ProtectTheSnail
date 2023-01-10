@@ -1,15 +1,13 @@
-﻿using System;
-using CodeBase.Infrastructure.Services.PauseService;
-using CodeBase.UI.Elements;
+﻿using CodeBase.Infrastructure.Services.PauseService;
+using CodeBase.UI.Elements.View;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.UI;
 
 namespace CodeBase.UI.Windows
 {
     public class BaseWindow : MonoBehaviour
     {
-        [SerializeField] private CloseButtonView _closeButton;
+        [SerializeField] private CloseWindowButtonView closeWindowButton;
+        [SerializeField] private bool _needSetPause = true;
         
         private IPauseService _pauseService;
 
@@ -23,17 +21,17 @@ namespace CodeBase.UI.Windows
         {
             Initialize();
             SubscribeUpdates();
-            _pauseService.SetPause(true);
+            _pauseService.SetPause(_needSetPause);
         }
 
         private void OnDestroy()
         {
-            _closeButton.CloseWindow -= Hide;
+            closeWindowButton.CloseWindow -= Hide;
             UnsubscribeUpdates();
         }
 
         private void OnAwake() =>
-            _closeButton.CloseWindow += Hide;
+            closeWindowButton.CloseWindow += Hide;
 
         private void Hide()
         {

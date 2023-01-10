@@ -3,6 +3,7 @@ using CodeBase.Infrastructure.Services.PauseService;
 using CodeBase.Infrastructure.Services.Pool;
 using CodeBase.Infrastructure.Services.Randomizer;
 using CodeBase.UI.Elements;
+using CodeBase.UI.Elements.View;
 using Cysharp.Threading.Tasks;
 using UniRx;
 using UnityEngine;
@@ -26,9 +27,8 @@ namespace CodeBase.Gameplay.Arrow
 
         private IRandomService _randomService;
         private DateTimeOffset _timeOffset;
-        private CloseButtonView _TutorialView;
+        
         public bool _isPlay;
-        private IScheduler _mainThreadIgnoreTimeScale;
         private bool _isPause;
 
         public event Action<Position> OnArrowCollision;

@@ -4,7 +4,8 @@ namespace CodeBase.UI.Windows
 {
     public class TutorialWindow : BaseWindow
     {
-        public void Construct(IPauseService pauseService) => 
+        public new void Construct(IPauseService pauseService) => 
             base.Construct(pauseService);
+
     }
 }

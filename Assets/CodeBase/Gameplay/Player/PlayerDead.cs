@@ -1,6 +1,6 @@
-using CodeBase.Gameplay.Arrow;
 using CodeBase.Infrastructure.Services.PauseService;
 using CodeBase.Infrastructure.Services.Pool;
+using CodeBase.UI.Services.Windows;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Player
@@ -12,13 +12,14 @@ namespace CodeBase.Gameplay.Player
         [SerializeField] private FX _fx;
 
         private IPauseService _pauseService;
-        private Spawner _spawner;
+        private IWindowService _windowService;
+        
         private bool _isDead;
 
-        public void Construct(Spawner spawner, IPauseService pauseService)
+        public void Construct(IPauseService pauseService, IWindowService windowService)
         {
-            _spawner = spawner;
             _pauseService = pauseService;
+            _windowService = windowService;
         }
 
         private void Start() => 
@@ -34,10 +35,10 @@ namespace CodeBase.Gameplay.Player
         {
             _isDead = true;
             ObjectPool.DestroyAllPools();
-            _pauseService.SetPause(true);
-            
+           // _pauseService.SetPause(true);
             _fx.enabled = false;
-            //_spawner.enabled = false;
+            _windowService.Open(WindowType.TutorialWindow);
+
             
             Debug.Log("<Interface>.LosePanel.Enable();");
         }

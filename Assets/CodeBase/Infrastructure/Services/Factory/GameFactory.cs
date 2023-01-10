@@ -4,6 +4,7 @@ using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Services.PauseService;
 using CodeBase.Infrastructure.Services.Randomizer;
 using CodeBase.UI.Elements.View;
+using CodeBase.UI.Services.Windows;
 using CodeBase.UI.Windows;
 using UnityEngine;
 
@@ -14,14 +15,17 @@ namespace CodeBase.Infrastructure.Services.Factory
         private readonly IAssetProvider _assets;
         private readonly IRandomService _randomService;
         private readonly IPauseService _pauseService;
+        private readonly IWindowService _windowService;
 
         private GameObject SpawnerObject { get; set; }
 
-        public GameFactory(IAssetProvider assets, IRandomService randomService, IPauseService pauseService)
+        public GameFactory(IAssetProvider assets, IRandomService randomService,
+            IPauseService pauseService, IWindowService windowService)
         {
             _assets = assets;
             _randomService = randomService;
             _pauseService = pauseService;
+            _windowService = windowService;
         }
 
         public void CreatePoolEntry() =>
@@ -29,45 +33,46 @@ namespace CodeBase.Infrastructure.Services.Factory
 
         public GameObject CreateSpawner()
         {
-            SpawnerObject = _assets.Instantiate(AssetAddress.SpawnerPath);
+            SpawnerObject = InstantiateRegistered(AssetAddress.SpawnerPath);
             SpawnerObject.GetComponent<Spawner>().Construct(_randomService);
-            Register(SpawnerObject);
+
             return SpawnerObject;
         }
 
         public GameObject CreatePlayer()
         {
-            GameObject player = _assets.Instantiate(AssetAddress.PlayerPath);
+            GameObject player = InstantiateRegistered(AssetAddress.PlayerPath);
             player.GetComponent<PlayerCheckAttack>().Construct(SpawnerObject.GetComponent<Spawner>());
-            player.GetComponent<PlayerDead>().Construct(SpawnerObject.GetComponent<Spawner>(), _pauseService);
-            Register(player);
+            player.GetComponent<PlayerDead>().Construct(_pauseService, _windowService);
+
             return player;
         }
 
         public GameObject CreateHUD() =>
             _assets.Instantiate(AssetAddress.HUDPath);
 
-        public MainMenuView CreateMainMenuUI()
+        public StartGameView CreateMainMenu()
         {
             GameObject mainMenuObject = _assets.Instantiate(AssetAddress.MainMenuPath);
-            return mainMenuObject.GetComponent<MainMenuView>();
+            foreach (var openWindowButton in mainMenuObject.GetComponentsInChildren<OpenWindowButtonView>())
+                openWindowButton.Construct(_windowService);
+
+            return mainMenuObject.GetComponent<StartGameView>();
         }
 
-        public TutorialPanel CreateTutorialPanelUI()
-        {
-            GameObject tutorialPanelObject = _assets.Instantiate(AssetAddress.TutorialPanelPath);
-            return tutorialPanelObject.GetComponent<TutorialPanel>();
-        }
-
-        private void Register(GameObject gameObject)
-        {
+        private void Register(GameObject gameObject) => 
             RegisterPauseHandler(gameObject);
-        }
 
         private void RegisterPauseHandler(GameObject gameObject)
         {
             foreach (IPauseHandler pauseHandler in gameObject.GetComponentsInChildren<IPauseHandler>())
                 _pauseService.Register(pauseHandler);
         }
+        private GameObject InstantiateRegistered(string prefabPath) {
+            GameObject gameObject = _assets.Instantiate(prefabPath);
+            Register(gameObject);
+            return gameObject;
+        }
+        
     }
 }

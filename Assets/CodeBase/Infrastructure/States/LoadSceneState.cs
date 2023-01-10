@@ -5,6 +5,7 @@ using CodeBase.Infrastructure.Services.Factory;
 using CodeBase.Infrastructure.States.Interface;
 using CodeBase.Infrastructure.States.StateMachine;
 using CodeBase.UI.Elements;
+using CodeBase.UI.Services.UIFactory;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.States
@@ -15,14 +16,16 @@ namespace CodeBase.Infrastructure.States
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingCurtain _curtain;
         private readonly IGameFactory _gameFactory;
+        private readonly IUIFactory _uiFactory;
 
         public LoadSceneState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain,
-            IGameFactory gameFactory)
+            IGameFactory gameFactory, IUIFactory uiFactory)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _curtain = curtain;
             _gameFactory = gameFactory;
+            _uiFactory = uiFactory;
         }
 
         public void Enter(SceneNames sceneName)
@@ -38,19 +41,25 @@ namespace CodeBase.Infrastructure.States
 
         private void OnSceneLoaded()
         {
-            InitGameWorld();
+            InitializeGameWorld();
             _stateMachine.Enter<GameLoopState>();
         }
 
-        private void InitGameWorld()
+        private void InitializeGameWorld()
         {
             _gameFactory.CreatePoolEntry();
             _gameFactory.CreateSpawner();
             GameObject player = _gameFactory.CreatePlayer();
-            InitHUD(player);
+            InitializeUIRoot();
+            InitializeHUD(player);
         }
 
-        private void InitHUD(GameObject player)
+        private void InitializeUIRoot()
+        {
+            _uiFactory.CreateUIRoot();
+        }
+
+        private void InitializeHUD(GameObject player)
         {
             GameObject hud = _gameFactory.CreateHUD();
             hud.GetComponentInChildren<ActorUI>()

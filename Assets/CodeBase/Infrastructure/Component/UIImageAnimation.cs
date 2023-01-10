@@ -14,9 +14,7 @@ namespace CodeBase.Infrastructure.Component
         private float _secondPerFrame;
         private int _currentSpriteIndex;
         private float _nextFrameTime;
-        
-        private void Start() => 
-            _renderer = GetComponent<Image>();
+        private bool _isPaused;
 
         private void OnEnable()
         {
@@ -24,6 +22,9 @@ namespace CodeBase.Infrastructure.Component
             _nextFrameTime = Time.time + _secondPerFrame;
             _currentSpriteIndex = 0;
         }
+
+        private void Start() => 
+            _renderer = GetComponent<Image>();
 
         private void Update()
         {
