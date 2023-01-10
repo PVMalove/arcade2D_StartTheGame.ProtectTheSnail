@@ -15,11 +15,12 @@ namespace CodeBase.UI.Elements.View
             _windowService = windowService;
 
         private void Awake() => 
-            _openButton.onClick.AddListener(Open);
+            _openButton.onClick.AddListener(OnOpenButtonClicked);
 
-        private void Open()
-        {
+        private void OnDestroy() => 
+            _openButton.onClick.RemoveListener(OnOpenButtonClicked);
+
+        private void OnOpenButtonClicked() => 
             _windowService.Open(_windowType);
-        }
     }
 }

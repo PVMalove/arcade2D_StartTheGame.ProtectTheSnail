@@ -2759,8 +2759,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -74.99997}
-  m_SizeDelta: {x: 0, y: -150.00006}
+  m_AnchoredPosition: {x: 0, y: -189.99997}
+  m_SizeDelta: {x: 0, y: -380.00006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7213048581786334935
 MonoBehaviour:
@@ -2774,7 +2774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11c1fe092af4be8a60647f0e4aed5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closeWindowButton: {fileID: 6192804509722414625}
+  closeButton: {fileID: 6192804509722414625}
   _needSetPause: 1
 --- !u!1 &9104074887649357619
 GameObject:
@@ -2925,11 +2925,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7252976619154651808, guid: cea75be32b2f3f745854528b088fa5f0, type: 3}
       propertyPath: m_Pivot.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7252976619154651808, guid: cea75be32b2f3f745854528b088fa5f0, type: 3}
       propertyPath: m_Pivot.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7252976619154651808, guid: cea75be32b2f3f745854528b088fa5f0, type: 3}
       propertyPath: m_RootOrder
@@ -2989,11 +2989,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7252976619154651808, guid: cea75be32b2f3f745854528b088fa5f0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 40
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7252976619154651808, guid: cea75be32b2f3f745854528b088fa5f0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7252976619154651808, guid: cea75be32b2f3f745854528b088fa5f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

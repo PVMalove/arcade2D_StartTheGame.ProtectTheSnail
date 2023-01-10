@@ -1,4 +1,3 @@
-using CodeBase.Infrastructure.Services.PauseService;
 using CodeBase.Infrastructure.Services.Pool;
 using CodeBase.UI.Services.Windows;
 using UnityEngine;
@@ -9,18 +8,14 @@ namespace CodeBase.Gameplay.Player
     {
         [SerializeField] private PlayerHealth _health;
         [SerializeField] private PlayerMovement _movement;
-        [SerializeField] private FX _fx;
+        [SerializeField] private GameFX gameFX;
 
-        private IPauseService _pauseService;
         private IWindowService _windowService;
         
         private bool _isDead;
 
-        public void Construct(IPauseService pauseService, IWindowService windowService)
-        {
-            _pauseService = pauseService;
+        public void Construct(IWindowService windowService) => 
             _windowService = windowService;
-        }
 
         private void Start() => 
             _health.HealthChanged += HealthChanged;
@@ -34,13 +29,10 @@ namespace CodeBase.Gameplay.Player
         private void Die()
         {
             _isDead = true;
+            gameFX.enabled = false;
             ObjectPool.DestroyAllPools();
-           // _pauseService.SetPause(true);
-            _fx.enabled = false;
-            _windowService.Open(WindowType.TutorialWindow);
 
-            
-            Debug.Log("<Interface>.LosePanel.Enable();");
+            _windowService.Open(WindowType.GameOverWindow);
         }
     }
 }

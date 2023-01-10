@@ -17,8 +17,14 @@ namespace CodeBase.UI.Services.Windows
             {
                 case  WindowType.None:
                     break;
+                case WindowType.MainMenuWindow:
+                    _uiFactory.CreateMainMenu();
+                    break;
                 case WindowType.TutorialWindow:
                     _uiFactory.CreateTutorial();
+                    break;
+                case WindowType.GameOverWindow:
+                    _uiFactory.CreateGameOver();
                     break;
             }
         }

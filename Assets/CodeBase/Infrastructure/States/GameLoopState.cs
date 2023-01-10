@@ -1,19 +1,15 @@
-using CodeBase.Infrastructure.AssetManagement;
-using CodeBase.Infrastructure.Loader;
-using CodeBase.Infrastructure.Services.Pool;
 using CodeBase.Infrastructure.States.Interface;
 using CodeBase.Infrastructure.States.StateMachine;
 using CodeBase.UI.Elements;
+using CodeBase.UI.Elements.View;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace CodeBase.Infrastructure.States
 {
     public class GameLoopState : IState
     {
-        private RestartView _view;
+        private RestartButtonView _buttonView;
         private readonly GameStateMachine _stateMachine;
-
 
         public GameLoopState(GameStateMachine stateMachine)
         {
@@ -21,19 +17,11 @@ namespace CodeBase.Infrastructure.States
         }
 
         public void Enter()
-        {
-            _view = Object.FindObjectOfType<RestartView>();
-            Assert.IsNotNull(_view, "Main menu view not found");
-            _view.Restart += OnRestart;
-        }
+        { }
 
-        private void OnRestart()
+        public void Exit()
         {
-            ObjectPool.DestroyAllPools();
-            _stateMachine.Start();
+            Debug.Log("Exit loop");
         }
-
-        public void Exit() => 
-            _view.Restart -= OnRestart;
     }
 }

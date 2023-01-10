@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace CodeBase.UI.Elements.View
 {
-    public class StartGameView : MonoBehaviour
+    public class StartGameButtonView : MonoBehaviour
     {
         [SerializeField] private Button _playButton;
 

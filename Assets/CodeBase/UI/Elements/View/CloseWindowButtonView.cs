@@ -10,12 +10,12 @@ namespace CodeBase.UI.Elements.View
         public event Action CloseWindow;
 
         private void OnEnable() => 
-            _closeButton.AddListener(Close);
+            _closeButton.AddListener(OnCloseButtonClicked);
 
         private void OnDestroy() => 
-            _closeButton.RemoveListener(Close);
+            _closeButton.RemoveListener(OnCloseButtonClicked);
 
-        private void Close() => 
+        private void OnCloseButtonClicked() => 
             CloseWindow?.Invoke();
     }
 }

@@ -3,9 +3,7 @@ using CodeBase.Gameplay.Player;
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Services.PauseService;
 using CodeBase.Infrastructure.Services.Randomizer;
-using CodeBase.UI.Elements.View;
 using CodeBase.UI.Services.Windows;
-using CodeBase.UI.Windows;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.Services.Factory
@@ -43,22 +41,13 @@ namespace CodeBase.Infrastructure.Services.Factory
         {
             GameObject player = InstantiateRegistered(AssetAddress.PlayerPath);
             player.GetComponent<PlayerCheckAttack>().Construct(SpawnerObject.GetComponent<Spawner>());
-            player.GetComponent<PlayerDead>().Construct(_pauseService, _windowService);
+            player.GetComponent<PlayerDead>().Construct(_windowService);
 
             return player;
         }
 
         public GameObject CreateHUD() =>
             _assets.Instantiate(AssetAddress.HUDPath);
-
-        public StartGameView CreateMainMenu()
-        {
-            GameObject mainMenuObject = _assets.Instantiate(AssetAddress.MainMenuPath);
-            foreach (var openWindowButton in mainMenuObject.GetComponentsInChildren<OpenWindowButtonView>())
-                openWindowButton.Construct(_windowService);
-
-            return mainMenuObject.GetComponent<StartGameView>();
-        }
 
         private void Register(GameObject gameObject) => 
             RegisterPauseHandler(gameObject);
@@ -73,6 +62,5 @@ namespace CodeBase.Infrastructure.Services.Factory
             Register(gameObject);
             return gameObject;
         }
-        
     }
 }

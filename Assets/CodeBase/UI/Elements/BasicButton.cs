@@ -32,7 +32,7 @@ namespace CodeBase.UI.Elements
 
         private event Action _downCallback;
         private event Action _upCallback;
-        private event Action _soundClickCallback;
+        //private event Action _soundClickCallback;
 
 
         public void Awake()

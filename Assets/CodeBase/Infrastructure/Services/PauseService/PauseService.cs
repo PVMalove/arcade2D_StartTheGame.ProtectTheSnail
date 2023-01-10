@@ -5,7 +5,7 @@ namespace CodeBase.Infrastructure.Services.PauseService
     public class PauseService : IPauseService
     {
         private readonly List<IPauseHandler> _handlers = new();
-
+       
         public void Register(IPauseHandler pauseHandler) => 
             _handlers.Add(pauseHandler);
 

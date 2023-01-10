@@ -949,7 +949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: {fileID: 4918808151270047894}
   _movement: {fileID: 920570745911123804}
-  _fx: {fileID: 6028721584763442807}
+  gameFX: {fileID: 6028721584763442807}
 --- !u!1 &5051957189350315682
 GameObject:
   m_ObjectHideFlags: 0

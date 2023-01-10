@@ -6,6 +6,5 @@ namespace CodeBase.UI.Windows
     {
         public new void Construct(IPauseService pauseService) => 
             base.Construct(pauseService);
-
     }
 }

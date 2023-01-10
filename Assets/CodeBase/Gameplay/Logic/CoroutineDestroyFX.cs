@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CodeBase.Gameplay.Logic
 {
-    public class CoroutineFX : MonoBehaviour
+    public class CoroutineDestroyFX : MonoBehaviour
     {
         private const float LifeTimeFX = 1.5f;
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CodeBase.Gameplay.Player
 {
-    public class FX : MonoBehaviour
+    public class GameFX : MonoBehaviour
     {
         [SerializeField] private PlayerCheckAttack playerCheckAttack;
         

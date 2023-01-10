@@ -3,6 +3,8 @@
     public enum WindowType
     {
         None,
+        MainMenuWindow,
         TutorialWindow,
+        GameOverWindow,
     }
 }

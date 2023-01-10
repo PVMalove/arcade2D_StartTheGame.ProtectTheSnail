@@ -2,8 +2,6 @@
 using CodeBase.Infrastructure.Services.PauseService;
 using CodeBase.Infrastructure.Services.Pool;
 using CodeBase.Infrastructure.Services.Randomizer;
-using CodeBase.UI.Elements;
-using CodeBase.UI.Elements.View;
 using Cysharp.Threading.Tasks;
 using UniRx;
 using UnityEngine;
@@ -27,8 +25,7 @@ namespace CodeBase.Gameplay.Arrow
 
         private IRandomService _randomService;
         private DateTimeOffset _timeOffset;
-        
-        public bool _isPlay;
+
         private bool _isPause;
 
         public event Action<Position> OnArrowCollision;
@@ -36,16 +33,16 @@ namespace CodeBase.Gameplay.Arrow
         public void Construct(IRandomService randomService) =>
             _randomService = randomService;
 
-        private void OnEnable() =>
-            OnGameStart();
-
-        private void Start() =>
+        private void Start()
+        {
+            IntervalCounter().Forget();
             UpdateSpawn();
+        }
 
         private void OnDisable()
         {
             if (_disposable != null)
-                _disposable.Clear();
+                _disposable.Dispose();
         }
 
         private void UpdateSpawn()
@@ -75,27 +72,16 @@ namespace CodeBase.Gameplay.Arrow
         private bool CheckTimer(Timestamped<long> x)
         {
             if (_isPause)
-            {
-                if (_disposable != null)
-                    _disposable.Clear();
-                Debug.Log($"Spawner - _isPause {_isPause}");
                 return false;
-            }
 
-            return x.Timestamp >= _timeOffset.AddSeconds(_interval) && _isPlay;
-        }
-
-        private void OnGameStart()
-        {
-            _isPlay = true;
-            IntervalCounter().Forget();
+            return x.Timestamp >= _timeOffset.AddSeconds(_interval);
         }
 
         private async UniTaskVoid IntervalCounter()
         {
             await UniTask.Delay(TimeSpan.FromSeconds(_nonLowerInterval));
 
-            while (_isPlay)
+            while (!_isPause)
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(_timeBetweenIntervals));
 

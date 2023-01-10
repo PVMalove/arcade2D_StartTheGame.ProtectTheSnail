@@ -6,9 +6,9 @@ namespace CodeBase.UI.Windows
 {
     public class BaseWindow : MonoBehaviour
     {
-        [SerializeField] private CloseWindowButtonView closeWindowButton;
         [SerializeField] private bool _needSetPause = true;
-        
+        [SerializeField] private CloseWindowButtonView closeButton;
+
         private IPauseService _pauseService;
 
         protected void Construct(IPauseService pauseService) => 
@@ -26,12 +26,12 @@ namespace CodeBase.UI.Windows
 
         private void OnDestroy()
         {
-            closeWindowButton.CloseWindow -= Hide;
+            closeButton.CloseWindow -= Hide;
             UnsubscribeUpdates();
         }
 
         private void OnAwake() =>
-            closeWindowButton.CloseWindow += Hide;
+            closeButton.CloseWindow += Hide;
 
         private void Hide()
         {

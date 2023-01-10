@@ -12,7 +12,7 @@ namespace CodeBase.Infrastructure.States.StateMachine
 
     protected StateMachine()
     {
-        DefaultState defaultState = new DefaultState();
+        DefaultState defaultState = new();
         _activeState = defaultState;
         _states = new Dictionary<Type, IExitState> { [typeof(DefaultState)] = defaultState };
     }

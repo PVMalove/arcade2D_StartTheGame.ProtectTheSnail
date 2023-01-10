@@ -8,6 +8,7 @@ using CodeBase.Infrastructure.Services.Randomizer;
 using CodeBase.Infrastructure.States.Interface;
 using CodeBase.Infrastructure.States.StateMachine;
 using CodeBase.Infrastructure.StaticData;
+using CodeBase.UI.Services;
 using CodeBase.UI.Services.UIFactory;
 using CodeBase.UI.Services.Windows;
 
@@ -42,19 +43,27 @@ namespace CodeBase.Infrastructure.States
         {
             RegisterStaticDataService();
 
+            _services.RegisterSingle<IGameStateMachine>(_stateMachine);
+            
             _services.RegisterSingle(InputService());
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
             _services.RegisterSingle<IPauseService>(new PauseService());
-           
+
+            //
+            _services.RegisterSingle<IGameRunnerService>( new GameRunnerService(_stateMachine));
+            //
+            
             _services.RegisterSingle<IUIFactory>(new UIFactory(
                 _services.Single<IAssetProvider>(),
                 _services.Single<IStaticDataService>(),
-                _services.Single<IPauseService>()));
+                _services.Single<IPauseService>(),
+                _services.Single<IGameRunnerService>()));
             
-            _services.RegisterSingle<IWindowService>( new WindowService(
+            _services.RegisterSingle<IWindowService>(new WindowService(
                 _services.Single<IUIFactory>()));
-            
+
             _services.RegisterSingle<IRandomService>(new RandomService());
+            
             _services.RegisterSingle<IGameFactory>(new GameFactory(
                 _services.Single<IAssetProvider>(),
                 _services.Single<IRandomService>(),
