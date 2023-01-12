@@ -1,8 +1,8 @@
+using CodeBase.Infrastructure.Services;
+using CodeBase.Infrastructure.Services.SaveLoad;
 using CodeBase.Infrastructure.States.Interface;
 using CodeBase.Infrastructure.States.StateMachine;
-using CodeBase.UI.Elements;
 using CodeBase.UI.Elements.View;
-using UnityEngine;
 
 namespace CodeBase.Infrastructure.States
 {
@@ -20,8 +20,6 @@ namespace CodeBase.Infrastructure.States
         { }
 
         public void Exit()
-        {
-            Debug.Log("Exit loop");
-        }
+        { }
     }
 }

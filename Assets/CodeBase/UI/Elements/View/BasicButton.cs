@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace CodeBase.UI.Elements
+namespace CodeBase.UI.Elements.View
 { 
     [RequireComponent(typeof(Button))]
     [RequireComponent(typeof(RectTransform))]

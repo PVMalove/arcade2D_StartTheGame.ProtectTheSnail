@@ -54,16 +54,15 @@ namespace CodeBase.Infrastructure.States
             InitializeHUD(player);
         }
 
-        private void InitializeUIRoot()
-        {
+        private void InitializeUIRoot() => 
             _uiFactory.CreateUIRoot();
-        }
 
         private void InitializeHUD(GameObject player)
         {
             GameObject hud = _gameFactory.CreateHUD();
             hud.GetComponentInChildren<ActorUI>()
-                .Construct(player.GetComponent<IHealth>(), player.GetComponent<IDiamond>());
+                .Construct(player.GetComponent<IHealth>());
+                //.Construct(player.GetComponent<IHealth>(), player.GetComponent<IDiamond>());
         }
     }
 }

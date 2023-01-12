@@ -4,7 +4,9 @@ using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Factory;
 using CodeBase.Infrastructure.Services.Input;
 using CodeBase.Infrastructure.Services.PauseService;
+using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Infrastructure.Services.Randomizer;
+using CodeBase.Infrastructure.Services.SaveLoad;
 using CodeBase.Infrastructure.States.Interface;
 using CodeBase.Infrastructure.States.StateMachine;
 using CodeBase.Infrastructure.StaticData;
@@ -44,15 +46,19 @@ namespace CodeBase.Infrastructure.States
             RegisterStaticDataService();
 
             _services.RegisterSingle<IGameStateMachine>(_stateMachine);
-            
-            _services.RegisterSingle(InputService());
-            _services.RegisterSingle<IAssetProvider>(new AssetProvider());
-            _services.RegisterSingle<IPauseService>(new PauseService());
 
-            //
             _services.RegisterSingle<IGameRunnerService>( new GameRunnerService(_stateMachine));
-            //
+
+            _services.RegisterSingle(InputService());
+
+            _services.RegisterSingle<IAssetProvider>(new AssetProvider());
+
+            _services.RegisterSingle<IPauseService>(new PauseService());
             
+            _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
+            _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(
+                _services.Single<IPersistentProgressService>()));
+
             _services.RegisterSingle<IUIFactory>(new UIFactory(
                 _services.Single<IAssetProvider>(),
                 _services.Single<IStaticDataService>(),
@@ -63,10 +69,11 @@ namespace CodeBase.Infrastructure.States
                 _services.Single<IUIFactory>()));
 
             _services.RegisterSingle<IRandomService>(new RandomService());
-            
+
             _services.RegisterSingle<IGameFactory>(new GameFactory(
                 _services.Single<IAssetProvider>(),
                 _services.Single<IRandomService>(),
+                _services.Single<IPersistentProgressService>(),
                 _services.Single<IPauseService>(),
                 _services.Single<IWindowService>()));
         }

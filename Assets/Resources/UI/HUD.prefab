@@ -195,7 +195,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 843552337976104375}
-  _balance: {fileID: 65530600156663991}
 --- !u!1 &843552337976104372
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,7 +596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2139290584860388478}
   - component: {fileID: 4921002783641154113}
-  - component: {fileID: 65530600156663991}
+  - component: {fileID: 5004212939443503562}
   m_Layer: 5
   m_Name: BalanceBar
   m_TagString: Untagged
@@ -653,7 +652,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &65530600156663991
+--- !u!114 &5004212939443503562
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -662,7 +661,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2908631718040346909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef941f5622054ed6961ca50be35a8585, type: 3}
+  m_Script: {fileID: 11500000, guid: f16ad3a501c04451b3178d372f76cb59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _counter: {fileID: 1893807957574809911}

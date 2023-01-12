@@ -1,14 +1,13 @@
 using System;
-using CodeBase.Gameplay.Logic;
-using UnityEngine;
 
-namespace CodeBase.Gameplay.Player
+namespace CodeBase.Data
 {
-    public class Diamond : MonoBehaviour, IDiamond
+    [Serializable]
+    public class DiamondData
     {
-        public int Value { get; private set; }
+        public int Value;
 
-        public event Action ValueChanged;
+        public Action ValueChanged;
         
         public void Add(int amount)
         {

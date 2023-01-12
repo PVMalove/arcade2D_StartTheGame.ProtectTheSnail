@@ -1,4 +1,5 @@
 ﻿using System;
+using CodeBase.Data;
 using CodeBase.Gameplay.Arrow;
 using UnityEngine;
 
@@ -11,16 +12,18 @@ namespace CodeBase.Gameplay.Player
 
         [SerializeField] private PlayerMovement _player;
         [SerializeField] private PlayerHealth playerHealth;
-        [SerializeField] private Diamond _diamond;
 
         private Spawner _spawner;
+        private WorldData _worldData;
         
         public event Action<Position> DefenseFX;
         public event Action<Position> HitFX;
 
-
-        public void Construct(Spawner spawner) => 
+        public void Construct(Spawner spawner, WorldData worldData)
+        {
             _spawner = spawner;
+            _worldData = worldData;
+        }
 
         private void Start() => 
             _spawner.OnArrowCollision += ArrowCollision;
@@ -33,7 +36,7 @@ namespace CodeBase.Gameplay.Player
             if (_player.Position == arrowPosition)
             {
                 DefenseFX?.Invoke(_player.Position);
-                _diamond.Add(CountDiamond);
+                _worldData.DiamondData.Add(CountDiamond);
             }
             else
             {

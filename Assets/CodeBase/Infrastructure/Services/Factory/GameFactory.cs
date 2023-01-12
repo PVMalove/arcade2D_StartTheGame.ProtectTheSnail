@@ -2,7 +2,9 @@ using CodeBase.Gameplay.Arrow;
 using CodeBase.Gameplay.Player;
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Services.PauseService;
+using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Infrastructure.Services.Randomizer;
+using CodeBase.UI.Elements.View;
 using CodeBase.UI.Services.Windows;
 using UnityEngine;
 
@@ -12,16 +14,18 @@ namespace CodeBase.Infrastructure.Services.Factory
     {
         private readonly IAssetProvider _assets;
         private readonly IRandomService _randomService;
+        private readonly IPersistentProgressService _progressService;
         private readonly IPauseService _pauseService;
         private readonly IWindowService _windowService;
 
         private GameObject SpawnerObject { get; set; }
 
         public GameFactory(IAssetProvider assets, IRandomService randomService,
-            IPauseService pauseService, IWindowService windowService)
+            IPersistentProgressService progressService, IPauseService pauseService, IWindowService windowService)
         {
             _assets = assets;
             _randomService = randomService;
+            _progressService = progressService;
             _pauseService = pauseService;
             _windowService = windowService;
         }
@@ -40,14 +44,19 @@ namespace CodeBase.Infrastructure.Services.Factory
         public GameObject CreatePlayer()
         {
             GameObject player = InstantiateRegistered(AssetAddress.PlayerPath);
-            player.GetComponent<PlayerCheckAttack>().Construct(SpawnerObject.GetComponent<Spawner>());
+            player.GetComponent<PlayerCheckAttack>().Construct(SpawnerObject.GetComponent<Spawner>(),
+                _progressService.Progress.WorldData);
             player.GetComponent<PlayerDead>().Construct(_windowService);
 
             return player;
         }
 
-        public GameObject CreateHUD() =>
-            _assets.Instantiate(AssetAddress.HUDPath);
+        public GameObject CreateHUD()
+        {
+            GameObject hud = _assets.Instantiate(AssetAddress.HUDPath);
+            hud.GetComponentInChildren<DiamondCounter>().Construct(_progressService.Progress.WorldData);
+            return hud;
+        }
 
         private void Register(GameObject gameObject) => 
             RegisterPauseHandler(gameObject);
